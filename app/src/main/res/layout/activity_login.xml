@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/bg_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/large_padding_size">
+
+        <EditText
+            android:id="@+id/edit_login_user"
+            android:drawablePadding="@dimen/small_padding_size"
+            android:layout_marginTop="@dimen/large_padding_size"
+            android:hint="@string/hint_login_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_user"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/edit_login_password"
+            android:drawablePadding="@dimen/small_padding_size"
+            android:layout_below="@id/edit_login_user"
+            android:hint="@string/hint_login_password"
+            android:layout_marginTop="@dimen/common_padding_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:password="true"
+            android:singleLine="true"
+            android:drawableLeft="@drawable/ic_password" />
+
+        <Button
+            android:id="@+id/button_login_login"
+            android:layout_below="@id/edit_login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_login_login_caption"
+            android:layout_marginTop="@dimen/common_padding_size" />
+    </RelativeLayout>
+
+</RelativeLayout>

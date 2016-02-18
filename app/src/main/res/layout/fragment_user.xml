@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <!-- 我的资料-->
+    <RelativeLayout style="@style/list_functional_layout"
+        android:layout_marginTop="@dimen/large_padding_size">
+
+        <TextView style="@style/list_text_caption"
+            android:text="@string/text_user_user_caption"/>
+
+        <include layout="@layout/layout_right_arrow" />
+
+    </RelativeLayout>
+
+    <!-- 离线数据库-->
+    <RelativeLayout style="@style/list_functional_layout"
+        android:layout_marginTop="@dimen/large_padding_size">
+
+
+        <TextView style="@style/list_text_caption"
+            android:text="@string/text_user_offline_db"/>
+
+        <include layout="@layout/layout_right_arrow" />
+    </RelativeLayout>
+
+    <!-- 关于我们-->
+    <RelativeLayout style="@style/list_functional_layout"
+        android:layout_marginTop="@dimen/large_padding_size">
+        <TextView style="@style/list_text_caption"
+            android:text="@string/text_user_about"/>
+
+        <include layout="@layout/layout_right_arrow" />
+    </RelativeLayout>
+
+
+</LinearLayout>

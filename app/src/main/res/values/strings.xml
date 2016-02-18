@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">中国沿海水鸟查询助手</string>
+    <string name="baidu_api_key">d32c029b09c36071eab5684ca53331c2</string>
+
+    <string name="default_city_name">香港</string>
+    <string name="text_current_city_caption">当前城市</string>
+    <string name="app_version">版本号1.0</string>
+    <string name="text_add_expand_caption">请选择鸟物种和名称</string>
+    <string name="text_add_birds_count_caption">观察数量</string>
+
+    <string name="hint_add_search">请输入关键字进行搜索</string>
+    <string name="hint_add_locate">请输入经纬度</string>
+    <string name="text_add_locate_caption">观察地点</string>
+    <string name="button_add_locate">定位</string>
+
+    <string name="text_add_date_caption">观察日期</string>
+    <string name="text_add_weather_caption">观察天气</string>
+    <string name="button_add_local">保存</string>
+    <string name="button_add_upload">上传</string>
+    <string name="button_add_today_caption">今天</string>
+    <string name="button_add_today_weather_caption">今日天气</string>
+
+    <string name="weather_obtain_error_message">查询此城市天气失败，请重试！</string>
+    <string name="locate_error_message">定位失败，请尝试手动填写！</string>
+    <string name="network_error_message">网络通讯失败，请检查是否有网络，并重试！</string>
+
+    <string name="button_add_user_caption">未登录</string>
+    <string name="text_left_drawer_default_city_caption">当前选择城市信息</string>
+    <string name="button_login_login_caption">登录</string>
+    <string name="hint_login_password">密码</string>
+    <string name="hint_login_username">用户名</string>
+    <string name="text_add_user_caption">观察用户</string>
+    <string name="text_user_user_caption">我的资料</string>
+    <string name="text_user_offline_db">离线数据库</string>
+    <string name="text_user_about">关于我们</string>
+    <string name="button_add_addrecord_caption">添加记录</string>
+</resources>

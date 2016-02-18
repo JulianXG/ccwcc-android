@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!-- 搜索框-->
+        <EditText
+            android:id="@+id/text_add_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:hint="@string/hint_add_search"
+            android:elegantTextHeight="true"/>
+
+        <!-- 用户区代码-->
+        <include layout="@layout/layout_divider" />
+        <RelativeLayout style="@style/list_layout">
+
+            <TextView style="@style/list_text_caption"
+                android:id="@+id/text_add_user_caption"
+                android:text="@string/text_add_user_caption"/>
+
+            <TextView style="@style/list_text_content"
+                android:id="@+id/text_add_user"
+                android:text="@string/button_add_user_caption"
+                android:layout_toRightOf="@id/text_add_user_caption"/>
+
+        </RelativeLayout>
+
+        <!--鸟物种名称TextView-->
+
+        <RelativeLayout style="@style/list_layout"
+            android:id="@+id/layout_add_birds">
+
+            <TextView style="@style/list_text_caption"
+                android:id="@+id/text_add_birds"
+                android:text="@string/text_add_expand_caption"/>
+
+            <!-- 右箭头-->
+            <include layout="@layout/layout_right_arrow" />
+
+        </RelativeLayout>
+
+        <!-- 鸟数量区域-->
+
+        <RelativeLayout style="@style/list_layout">
+
+            <TextView style="@style/list_text_caption"
+                android:id="@+id/text_add_birds_count_caption"
+                android:text="@string/text_add_birds_count_caption"/>
+
+            <EditText style="@style/list_edit"
+                android:id="@+id/edit_add_birds_count"
+                android:inputType="number"
+                android:layout_toRightOf="@id/text_add_birds_count_caption" />
+
+        </RelativeLayout>
+
+        <!-- 经纬度定位区域-->
+
+        <RelativeLayout style="@style/list_layout">
+
+            <Button style="@style/list_right_button"
+                android:id="@+id/button_add_locate"
+                android:text="@string/button_add_locate"/>
+
+            <TextView style="@style/list_text_caption"
+                android:id="@+id/text_add_locate_caption"
+                android:text="@string/text_add_locate_caption" />
+
+            <EditText style="@style/list_edit"
+                android:id="@+id/edit_add_locate"
+                android:layout_toRightOf="@id/text_add_locate_caption"
+                android:layout_toLeftOf="@id/button_add_locate" />
+
+        </RelativeLayout>
+
+
+        <!-- 日期区域-->
+
+        <RelativeLayout style="@style/list_layout"
+            android:id="@+id/layout_add_date">
+
+            <TextView style="@style/list_text_caption"
+                android:id="@+id/text_add_date_caption"
+                android:text="@string/text_add_date_caption"/>
+
+            <TextView style="@style/list_text_content"
+                android:layout_toRightOf="@id/text_add_date_caption"
+                android:id="@+id/text_add_date"/>
+
+            <!-- 右箭头-->
+            <include layout="@layout/layout_right_arrow" />
+
+        </RelativeLayout>
+
+
+        <!-- 天气区域-->
+
+        <RelativeLayout style="@style/list_layout">
+
+            <Button style="@style/list_right_button"
+                android:id="@+id/button_add_today_weather"
+                android:text="@string/button_add_today_weather_caption"/>
+
+            <TextView style="@style/list_text_caption"
+                android:id="@+id/text_add_weather_caption"
+                android:text="@string/text_add_weather_caption" />
+
+            <EditText style="@style/list_edit"
+                android:id="@+id/edit_add_weather"
+                android:layout_toRightOf="@id/text_add_weather_caption"
+                android:layout_toLeftOf="@id/button_add_today_weather"/>
+
+        </RelativeLayout>
+
+        <!-- 添加记录按钮-->
+
+        <RelativeLayout style="@style/list_layout"
+            android:gravity="center">
+            <Button style="@style/list_button"
+                android:id="@+id/button_add_addrecord"
+                android:text="@string/button_add_addrecord_caption"/>
+        </RelativeLayout>
+
+        <include layout="@layout/layout_divider" />
+
+
+        <include layout="@layout/layout_divider" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/add_list_confirm_height"
+            android:background="@color/list_bg_color">
+
+        </ScrollView>
+
+        <!--保存按钮-->
+
+        <RelativeLayout style="@style/list_layout"
+            android:gravity="center">
+
+            <Button style="@style/list_button"
+                android:id="@+id/button_add_local"
+                android:text="@string/button_add_local"/>
+
+            <Button style="@style/list_button"
+                android:id="@+id/button_add_upload"
+                android:text="@string/button_add_upload"
+                android:layout_toRightOf="@id/button_add_local"/>
+
+        </RelativeLayout>
+
+        <include layout="@layout/layout_divider" />
+
+    </LinearLayout>
+</ScrollView>

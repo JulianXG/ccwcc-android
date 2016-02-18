@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="city_name_arrays">
+        <item>丹东</item>
+        <item>盘锦</item>
+        <item>天津</item>
+        <item>沧州</item>
+        <item>东营</item>
+        <item>连云港</item>
+        <item>如东</item>
+        <item>南汇</item>
+        <item>福州</item>
+        <item>泉州</item>
+        <item>海丰</item>
+        <item>深圳</item>
+        <item>香港</item>
+    </string-array>
+
+    <string-array name="city_name_display_arrays">
+        <item>辽宁丹东鸭绿江口</item>
+        <item>辽宁盘锦双台子河口</item>
+        <item>天津</item>
+        <item>沧州</item>
+        <item>山东黄河三角洲</item>
+        <item>连云港</item>
+        <item>江苏如东</item>
+        <item>上海南汇东滩湿地</item>
+        <item>福建闽江河口湿地</item>
+        <item>福建泉州湾</item>
+        <item>广东海丰鸟类自然保护区</item>
+        <item>深圳</item>
+        <item>香港米铺内后海湾</item>
+    </string-array>
+
+    <string-array name="toolbar_text_arrays">
+        <item>首页</item>
+        <item>统计</item>
+        <item>添加</item>
+        <item>本地</item>
+        <item>我</item>
+    </string-array>
+
+
+
+</resources>
