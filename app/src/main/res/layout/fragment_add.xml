@@ -37,6 +37,7 @@
         <RelativeLayout style="@style/list_layout"
             android:id="@+id/layout_add_birds">
 
+            <include layout="@layout/layout_divider" />
             <TextView style="@style/list_text_caption"
                 android:id="@+id/text_add_birds"
                 android:text="@string/text_add_expand_caption"/>
@@ -49,6 +50,7 @@
         <!-- 鸟数量区域-->
 
         <RelativeLayout style="@style/list_layout">
+            <include layout="@layout/layout_divider" />
 
             <TextView style="@style/list_text_caption"
                 android:id="@+id/text_add_birds_count_caption"
@@ -64,6 +66,7 @@
         <!-- 经纬度定位区域-->
 
         <RelativeLayout style="@style/list_layout">
+            <include layout="@layout/layout_divider" />
 
             <Button style="@style/list_right_button"
                 android:id="@+id/button_add_locate"
@@ -85,6 +88,7 @@
 
         <RelativeLayout style="@style/list_layout"
             android:id="@+id/layout_add_date">
+            <include layout="@layout/layout_divider" />
 
             <TextView style="@style/list_text_caption"
                 android:id="@+id/text_add_date_caption"
@@ -103,6 +107,7 @@
         <!-- 天气区域-->
 
         <RelativeLayout style="@style/list_layout">
+            <include layout="@layout/layout_divider" />
 
             <Button style="@style/list_right_button"
                 android:id="@+id/button_add_today_weather"
@@ -123,6 +128,8 @@
 
         <RelativeLayout style="@style/list_layout"
             android:gravity="center">
+            <include layout="@layout/layout_divider" />
+
             <Button style="@style/list_button"
                 android:id="@+id/button_add_addrecord"
                 android:text="@string/button_add_addrecord_caption"/>
