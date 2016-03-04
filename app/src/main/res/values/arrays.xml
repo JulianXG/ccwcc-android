@@ -34,9 +34,7 @@
 
     <string-array name="toolbar_text_arrays">
         <item>首页</item>
-        <item>统计</item>
         <item>添加</item>
-        <item>本地</item>
         <item>我</item>
     </string-array>
 

@@ -8,65 +8,20 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <!-- 搜索框-->
-        <EditText
-            android:id="@+id/text_add_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:hint="@string/hint_add_search"
-            android:elegantTextHeight="true"/>
-
-        <!-- 用户区代码-->
-        <include layout="@layout/layout_divider" />
-        <RelativeLayout style="@style/list_layout">
-
-            <TextView style="@style/list_text_caption"
-                android:id="@+id/text_add_user_caption"
-                android:text="@string/text_add_user_caption"/>
-
-            <TextView style="@style/list_text_content"
-                android:id="@+id/text_add_user"
-                android:text="@string/button_add_user_caption"
-                android:layout_toRightOf="@id/text_add_user_caption"/>
-
-        </RelativeLayout>
-
-        <!--鸟物种名称TextView-->
-
-        <RelativeLayout style="@style/list_layout"
-            android:id="@+id/layout_add_birds">
-
-            <include layout="@layout/layout_divider" />
-            <TextView style="@style/list_text_caption"
-                android:id="@+id/text_add_birds"
-                android:text="@string/text_add_expand_caption"/>
-
-            <!-- 右箭头-->
-            <include layout="@layout/layout_right_arrow" />
-
-        </RelativeLayout>
-
-        <!-- 鸟数量区域-->
-
-        <RelativeLayout style="@style/list_layout">
-            <include layout="@layout/layout_divider" />
-
-            <TextView style="@style/list_text_caption"
-                android:id="@+id/text_add_birds_count_caption"
-                android:text="@string/text_add_birds_count_caption"/>
-
-            <EditText style="@style/list_edit"
-                android:id="@+id/edit_add_birds_count"
-                android:inputType="number"
-                android:layout_toRightOf="@id/text_add_birds_count_caption" />
-
-        </RelativeLayout>
+        <SearchView
+        android:id="@+id/search_view_add"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/element_height"
+        android:iconifiedByDefault="false"
+        android:imeOptions="actionSearch"
+        android:queryHint="@string/hint_add_search"
+        android:inputType="text"/>
 
         <!-- 经纬度定位区域-->
-
-        <RelativeLayout style="@style/list_layout">
-            <include layout="@layout/layout_divider" />
+        <include layout="@layout/layout_divider" />
+        <RelativeLayout style="@style/list_common_layout">
 
             <Button style="@style/list_right_button"
                 android:id="@+id/button_add_locate"
@@ -78,6 +33,7 @@
 
             <EditText style="@style/list_edit"
                 android:id="@+id/edit_add_locate"
+                android:hint="@string/hint_add_locate"
                 android:layout_toRightOf="@id/text_add_locate_caption"
                 android:layout_toLeftOf="@id/button_add_locate" />
 
@@ -85,17 +41,14 @@
 
 
         <!-- 日期区域-->
-
-        <RelativeLayout style="@style/list_layout"
+        <RelativeLayout style="@style/list_common_layout"
             android:id="@+id/layout_add_date">
             <include layout="@layout/layout_divider" />
 
             <TextView style="@style/list_text_caption"
-                android:id="@+id/text_add_date_caption"
                 android:text="@string/text_add_date_caption"/>
 
             <TextView style="@style/list_text_content"
-                android:layout_toRightOf="@id/text_add_date_caption"
                 android:id="@+id/text_add_date"/>
 
             <!-- 右箭头-->
@@ -105,8 +58,7 @@
 
 
         <!-- 天气区域-->
-
-        <RelativeLayout style="@style/list_layout">
+        <RelativeLayout style="@style/list_common_layout">
             <include layout="@layout/layout_divider" />
 
             <Button style="@style/list_right_button"
@@ -124,31 +76,76 @@
 
         </RelativeLayout>
 
-        <!-- 添加记录按钮-->
 
-        <RelativeLayout style="@style/list_layout"
-            android:gravity="center">
+        <!--鸟物种名称TextView-->
+        <RelativeLayout
+            style="@style/list_common_layout"
+            android:id="@+id/layout_add_birds">
+
+
+            <include layout="@layout/layout_divider" />
+
+            <TextView
+                    android:id="@+id/text_add_birds_caption"
+                style="@style/list_text_caption"
+                android:text="@string/text_add_expand_caption" />
+
+            <TextView
+                style="@style/list_text_content"
+                android:layout_marginLeft="@dimen/small_padding_size"
+                android:layout_toRightOf="@id/text_add_birds_caption"
+                android:id="@+id/text_add_birds" />
+
+            <!-- 右箭头-->
+            <include layout="@layout/layout_right_arrow" />
+
+        </RelativeLayout>
+
+
+
+        <!-- 备注区域-->
+        <RelativeLayout style="@style/list_common_layout">
+
+            <include layout="@layout/layout_divider" />
+
+            <TextView style="@style/list_text_caption"
+                android:id="@+id/text_add_detail_caption"
+                android:text="@string/text_add_detail_caption"/>
+
+            <EditText style="@style/list_edit"
+                android:id="@+id/edit_add_detail"
+                android:hint="@string/hint_add_detail"
+                android:layout_toRightOf="@id/text_add_detail_caption"/>
+
+        </RelativeLayout>
+
+        <!-- 添加记录按钮-->
+        <RelativeLayout style="@style/list_common_layout">
             <include layout="@layout/layout_divider" />
 
             <Button style="@style/list_button"
                 android:id="@+id/button_add_addrecord"
+                android:layout_centerInParent="true"
                 android:text="@string/button_add_addrecord_caption"/>
         </RelativeLayout>
 
-        <include layout="@layout/layout_divider" />
 
-
-        <include layout="@layout/layout_divider" />
-        <ScrollView
+        <!--添加记录列表-->
+        <include layout="@layout/layout_divider"
+            android:layout_height="2px"
+            android:layout_width="match_parent" />
+        <ListView
+            android:id="@+id/list_add_confirm"
+            android:background="@color/list_bg_color"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/add_list_confirm_height"
-            android:background="@color/list_bg_color">
+            android:layout_height="@dimen/add_list_confirm_height"/>
 
-        </ScrollView>
 
         <!--保存按钮-->
-
-        <RelativeLayout style="@style/list_layout"
+        <include layout="@layout/layout_divider"
+            android:layout_height="2px"
+            android:layout_width="match_parent"/>
+        <RelativeLayout style="@style/list_common_layout"
             android:gravity="center">
 
             <Button style="@style/list_button"

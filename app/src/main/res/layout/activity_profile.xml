@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kalyter.ccwcc.ui.main.tab.user.ProfileActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <LinearLayout style="@style/list_container"
+        android:layout_marginTop="@dimen/large_padding_size">
+
+        <include layout="@layout/layout_divider"/>
+        <RelativeLayout style="@style/list_common_layout">
+            <TextView style="@style/list_text_content"
+                android:id="@+id/text_profile_user_name"/>
+
+            <TextView style="@style/list_text_caption"
+                android:text="@string/text_profile_username_caption"/>
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/list_common_layout">
+
+            <include layout="@layout/layout_divider" />
+            <TextView style="@style/list_text_caption"
+                android:text="@string/text_profile_nickname_caption"/>
+
+            <TextView style="@style/list_text_content"
+                android:id="@+id/text_profile_nickname"/>
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/list_common_layout">
+
+            <include layout="@layout/layout_divider" />
+            <TextView style="@style/list_text_caption"
+                android:text="@string/text_profile_city_caption"/>
+            <TextView style="@style/list_text_content"
+                android:id="@+id/text_profile_city"/>
+        </RelativeLayout>
+        <include layout="@layout/layout_divider" />
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

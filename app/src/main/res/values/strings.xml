@@ -1,16 +1,16 @@
 <resources>
-    <string name="app_name">中国沿海水鸟查询助手</string>
-    <string name="baidu_api_key">d32c029b09c36071eab5684ca53331c2</string>
+    <string name="app_name">中国沿海水鸟调查</string>
 
     <string name="default_city_name">香港</string>
     <string name="text_current_city_caption">当前城市</string>
     <string name="app_version">版本号1.0</string>
-    <string name="text_add_expand_caption">请选择鸟物种和名称</string>
+    <string name="text_add_expand_caption">名称数量</string>
     <string name="text_add_birds_count_caption">观察数量</string>
 
-    <string name="hint_add_search">请输入关键字进行搜索</string>
-    <string name="hint_add_locate">请输入经纬度</string>
+    <string name="hint_add_search">请输入关键字进行搜索鸟名称</string>
+    <string name="hint_add_locate">请输入经纬度信息</string>
     <string name="text_add_locate_caption">观察地点</string>
+
     <string name="button_add_locate">定位</string>
 
     <string name="text_add_date_caption">观察日期</string>
@@ -29,9 +29,51 @@
     <string name="button_login_login_caption">登录</string>
     <string name="hint_login_password">密码</string>
     <string name="hint_login_username">用户名</string>
-    <string name="text_add_user_caption">观察用户</string>
     <string name="text_user_user_caption">我的资料</string>
-    <string name="text_user_offline_db">离线数据库</string>
     <string name="text_user_about">关于我们</string>
+
+
     <string name="button_add_addrecord_caption">添加记录</string>
+    <string name="caption_delete">删除</string>
+    <string name="text_myprofile_about_caption">关于我们</string>
+    <string name="text_myprofile_developers">史本云\t肖刚\t周瑶\t陈浪\t骆攀攀\t杨磊</string>
+    <string name="text_contact_list"><a href="http://ebirdnote.cn">http://ebirdnote.cn</a></string>
+    <string name="text_contact_caption">联系我们</string>
+    <string name="text_myprofile_about_author">关于作者</string>
+    <string name="text_myprofile_author">肖刚\t邮箱:\txiaogangla@qq.com</string>
+    <string name="titile_toolbar_about">关于</string>
+    <string name="title_toolbar_profile">我的资料</string>
+    <string name="text_profile_username_caption">用户名</string>
+    <string name="text_profile_nickname_caption">昵称</string>
+    <string name="text_profile_city_caption">城市</string>
+    <string name="text_about_version">版本号\t1.0</string>
+    <string name="text_home_local_caption">本地记录</string>
+    <string name="text_home_date_statistics_caption">日期统计</string>
+    <string name="text_home_quantity_caption">鸟种统计</string>
+    <string name="text_home_flag_caption">旗标</string>
+    <string name="hint_add_locating">正在定位中...</string>
+    <string name="hint_add_quantity">观察数量</string>
+    <string name="hint_add_locate_error">定位失败，请尝试手动填写</string>
+    <string name="dialog_positive_button_caption_iknow">我知道了</string>
+    <string name="dialog_title_warning">警告</string>
+    <string name="dialog_title_information">信息</string>
+    <string name="dialog_positive_button_caption_confirm">确定</string>
+    <string name="dialog_positive_button_caption_cancel">取消</string>
+
+
+    <string name="dialog_message_incomplete">输入信息不完整，请检查确认后添加！</string>
+    <string name="prompt_add_record">添加此条记录成功</string>
+    <string name="prompt_exit_confirm">再按一次退出程序</string>
+    <string name="prompt_confirm_list_delete_success">删除记录成功</string>
+    <string name="text_add_detail_caption">观察备注</string>
+    <string name="hint_add_detail">可以填写详细描述</string>
+    <string name="prompt_add_save_local_success">记录已经成功保存到本地</string>
+    <string name="caption_loading">正在连接到网络...</string>
+    <string name="caption_home_local_select_all">全选</string>
+    <string name="caption_home_local_upload">上传</string>
+    <string name="title_toolbar_local_record">本地记录</string>
+    <string name="title_toolbar_quantity">鸟种统计</string>
+    <string name="caption_expand_add">批量添加</string>
+    <string name="prompt_dialog_empty_error">记录为空，不能保存</string>
+    <string name="caption_button_quantity_save_as_excel">另存为Excel文件</string>
 </resources>

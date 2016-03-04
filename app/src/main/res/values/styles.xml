@@ -13,16 +13,19 @@
     </style>
 
     <!-- 列表界面中每个列表项的布局风格-->
-    <style name="list_layout">
+    <style name="list_container">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="list_common_layout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/element_height</item>
-        <item name="android:paddingLeft">@dimen/small_padding_size</item>
-        <item name="android:paddingRight">@dimen/small_padding_size</item>
+        <item name="android:paddingLeft">@dimen/dp_10</item>
         <item name="android:background">@color/list_bg_color</item>
     </style>
 
-    <style name="list_functional_layout" parent="list_layout" >
-        <item name="android:color">@android:color/white</item>
+    <style name="list_functional_layout" parent="list_common_layout" >
         <item name="android:background">@drawable/selector_bg_list_functional</item>
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
@@ -33,14 +36,14 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentLeft">true</item>
         <item name="android:layout_centerVertical">true</item>
-        <item name="android:paddingLeft">@dimen/small_padding_size</item>
-        <item name="android:paddingRight">@dimen/small_padding_size</item>
     </style>
 
     <style name="list_text_content">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:paddingRight">@dimen/large_padding_size</item>
     </style>
 
     <style name="list_button">
@@ -59,5 +62,55 @@
         <item name="android:layout_alignParentRight">true</item>
     </style>
 
+    <style name="text_myprofile_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/common_padding_size</item>
+        <item name="android:layout_marginLeft">@dimen/common_padding_size</item>
+    </style>
 
+    <style name="img_home_function">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="img_home_function_caption">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginBottom">@dimen/small_padding_size</item>
+    </style>
+
+    <style name="layout_home_function_container">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/home_function_height</item>
+        <item name="android:weightSum">2</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="layout_home_function">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">@drawable/selector_bg_list_functional</item>
+    </style>
+
+    <style name="text_confirm_list_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/common_padding_size</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="center_left_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/small_padding_size</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
 </resources>

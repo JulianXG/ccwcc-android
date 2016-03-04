@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:padding="@dimen/small_padding_size"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <CheckBox style="@style/center_left_style"
+        android:id="@+id/checkbox_local" />
+
+    <TextView style="@style/center_left_style"
+        android:id="@+id/text_home_local_bird_name"/>
+
+    <TextView style="@style/center_left_style"
+        android:id="@+id/text_home_local_date"/>
+
+    <TextView style="@style/center_left_style"
+        android:layout_marginLeft="@dimen/common_padding_size"
+        android:id="@+id/text_home_local_quantity"/>
+</LinearLayout>

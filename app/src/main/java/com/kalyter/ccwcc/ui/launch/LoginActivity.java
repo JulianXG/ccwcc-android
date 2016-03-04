@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.kalyter.ccwcc.R;
-import com.kalyter.ccwcc.data.LoginHelperSP;
+import com.kalyter.ccwcc.data.LoginSP;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -33,11 +33,11 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginHelperSP loginHelperSP = new LoginHelperSP(buttonLogin.getRootView());
+                LoginSP loginSP = new LoginSP(LoginActivity.this);
                 String userName= String.valueOf(editUsername.getText());
                 String password= String.valueOf(editPassword.getText());
                 if (!userName.equals("") && !password.equals("")) {
-                    if (loginHelperSP.login(userName,password)){
+                    if (loginSP.login(userName,password)){
                         //登陆成功，进入主界面
                         Intent startMainActivity = new Intent("MAIN_ACTIVITY");
                         startActivity(startMainActivity);

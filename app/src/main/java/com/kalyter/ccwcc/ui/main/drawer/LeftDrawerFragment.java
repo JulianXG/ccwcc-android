@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.kalyter.ccwcc.R;
-import com.kalyter.ccwcc.data.WeatherHelperSP;
+import com.kalyter.ccwcc.data.WeatherSP;
 
 public class LeftDrawerFragment extends Fragment{
 
@@ -52,14 +52,14 @@ public class LeftDrawerFragment extends Fragment{
 
     private void initialActions() {
         //第一次先刷新并存入默认城市的信息，如果有上次城市信息则用上次城市
-        SharedPreferences sharedPreferences = mView.getContext().getSharedPreferences(WeatherHelperSP.PREFERENCES_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = mView.getContext().getSharedPreferences(WeatherSP.PREFERENCES_NAME, Context.MODE_PRIVATE);
         String city = sharedPreferences.getString("city", "");
         if (city.equals("")) {
             //如果记录为空则使用默认城市
             city=mView.getResources().getString(R.string.default_city_name);
         }
-        WeatherHelperSP weatherHelperSP = new WeatherHelperSP(mView);
-        weatherHelperSP.saveWeather(city);
+        WeatherSP weatherSP = new WeatherSP(mView.getContext());
+        weatherSP.saveWeather(city);
         textCurrentCity.setText(city);
     }
 
@@ -72,20 +72,22 @@ public class LeftDrawerFragment extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 //更新天气信息
-                WeatherHelperSP weatherHelperSP = new WeatherHelperSP(cityList.getRootView());
-                if(weatherHelperSP.saveWeather(cities[(int)id])){
-                    textCurrentCity.setText(cities[(int) id]);
+                WeatherSP weatherSP = new WeatherSP(cityList.getRootView().getContext());
+                String city = cities[(int) id];
+                if(weatherSP.saveWeather(city)){
+                    textCurrentCity.setText(city);
                     new AlertDialog.Builder(cityList.getContext())
-                            .setTitle("切换城市完成")
+                            .setTitle("信息")
                             .setIcon(android.R.drawable.ic_dialog_info)
-                            .setMessage("获取切换城市天气成功")
-                            .setPositiveButton("我知道了",null).create().show();
+                            .setMessage("获取" + city +"天气完成")
+                            .setPositiveButton("我知道了", null).create().show();
                 }else {
+                    SharedPreferences sharedPreferences = mView.getContext().getSharedPreferences(weatherSP.PREFERENCES_NAME, Context.MODE_PRIVATE);
                     new AlertDialog.Builder(cityList.getContext())
-                            .setTitle("获取天气失败")
-                            .setIcon(android.R.drawable.ic_dialog_info)
-                            .setMessage("请检查城市名称是否有效，并重试！")
-                            .setPositiveButton("我知道了",null).create().show();
+                            .setTitle("警告")
+                            .setIcon(android.R.drawable.stat_sys_warning)
+                            .setMessage(sharedPreferences.getString("status","获取天气失败"))
+                            .setPositiveButton("我知道了", null).create().show();
                 }
             }
         });

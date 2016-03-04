@@ -1,28 +1,30 @@
 package com.kalyter.ccwcc.ui.main;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.kalyter.ccwcc.R;
 import com.kalyter.ccwcc.ui.main.tab.add.AddFragment;
 import com.kalyter.ccwcc.ui.main.tab.home.HomeFragment;
-import com.kalyter.ccwcc.ui.main.tab.local.LocalFragment;
-import com.kalyter.ccwcc.ui.main.tab.statistics.StatisticsFragment;
 import com.kalyter.ccwcc.ui.main.tab.user.UserFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    private long exitTime=0;//用来判断按下两次返回键退出程序的时间值
     //百度地图相关全过程Activity级变量
     public static LocationClient locationClient;
     public static BDLocationListener myLocationListener;
@@ -35,15 +37,11 @@ public class MainActivity extends AppCompatActivity {
     private LayoutInflater layoutInflater;
 
     private Class fragmentArray[] = {HomeFragment.class
-            , StatisticsFragment.class
             , AddFragment.class
-            , LocalFragment.class
             , UserFragment.class};
 
     private int imageViewArray[] = {R.drawable.main_tab_item_home
-                                    ,R.drawable.main_tab_item_statistics
                                     ,R.drawable.main_tab_item_add
-                                    ,R.drawable.main_tab_item_local
                                     ,R.drawable.main_tab_item_user};
 
     private String strTextViewArray[];
@@ -53,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        locationClient = new LocationClient(getApplicationContext());
+        locationClient = new LocationClient(MainActivity.this);
         initToolbar();
         initFragmentTabHost();
 
@@ -61,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initToolbar() {
         //设置顶部标题栏
-        toolbar = (Toolbar)findViewById(R.id.toolbar_main);
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
         drawerLayout=(DrawerLayout) findViewById(R.id.layout_main_left_drawer);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -103,9 +101,19 @@ public class MainActivity extends AppCompatActivity {
         return view;
     }
 
+
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (System.currentTimeMillis() - exitTime > 2000) {
+                Toast.makeText(MainActivity.this, R.string.prompt_exit_confirm, Toast.LENGTH_SHORT).show();
+                exitTime=System.currentTimeMillis();
+            }else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

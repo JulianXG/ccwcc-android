@@ -1,26 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/home_bg_height"
-        android:background="@drawable/bg_home_top">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_margin="@dimen/small_padding_size"
-            android:id="@+id/text_home_weather_information"/>
-
-    </RelativeLayout>
+        android:layout_height="match_parent">
 
 
+        //顶部背景区域
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_bg_height"
+            android:layout_gravity="fill"
+            android:background="@drawable/bg_home_top">
 
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="@dimen/small_padding_size"
+                android:id="@+id/text_home_weather_information" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout style="@style/layout_home_function_container"
+            android:layout_marginTop="@dimen/small_padding_size">
+
+
+            <RelativeLayout style="@style/layout_home_function"
+                android:id="@+id/layout_home_local">
+
+                <ImageView style="@style/img_home_function"
+                    android:src="@drawable/bg_home_local" />
+
+                <TextView style="@style/img_home_function_caption"
+                    android:text="@string/text_home_local_caption" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/layout_home_function"
+                android:id="@+id/layout_home_date">
+
+                <ImageView style="@style/img_home_function"
+                    android:src="@drawable/bg_home_date"/>
+
+                <TextView style="@style/img_home_function_caption"
+                    android:text="@string/text_home_date_statistics_caption" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <LinearLayout style="@style/layout_home_function_container">
+
+            <RelativeLayout style="@style/layout_home_function"
+                android:id="@+id/layout_home_quantity">
+
+                <ImageView style="@style/img_home_function"
+                    android:src="@drawable/bg_home_quantity" />
+
+                <TextView style="@style/img_home_function_caption"
+                    android:text="@string/text_home_quantity_caption" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/layout_home_function"
+                android:id="@+id/layout_home_flag">
+
+                <ImageView style="@style/img_home_function"
+                    android:src="@drawable/bg_home_flag"/>
+
+                <TextView style="@style/img_home_function_caption"
+                    android:text="@string/text_home_flag_caption" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

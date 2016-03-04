@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.kalyter.ccwcc.R;
-import com.kalyter.ccwcc.data.LoginHelperSP;
+import com.kalyter.ccwcc.data.LoginSP;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -17,7 +17,7 @@ public class LaunchActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(LoginHelperSP.PREFERENCE_NAME, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(LoginSP.PREFERENCES_NAME, MODE_PRIVATE);
         final Intent intent = new Intent();
         if(sharedPreferences.getString("status","").equals("success")){
             intent.setAction( "MAIN_ACTIVITY");

@@ -2,21 +2,26 @@ package com.kalyter.ccwcc.ui.main.tab.home;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kalyter.ccwcc.R;
-import com.kalyter.ccwcc.data.WeatherHelperSP;
+import com.kalyter.ccwcc.data.WeatherSP;
 
 
 public class HomeFragment extends Fragment {
     private View mView;//定义了这个Fragment里面的view
     private TextView textWeatherInformation;
+    private RelativeLayout layoutLocalRecord,layoutDate,layoutQuantity,layoutFlag;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         findViews(inflater, container);
@@ -34,6 +39,10 @@ public class HomeFragment extends Fragment {
             parent.removeView(mView);
         }
         textWeatherInformation=(TextView) mView.findViewById(R.id.text_home_weather_information);
+        layoutLocalRecord=(RelativeLayout) mView.findViewById(R.id.layout_home_local);
+        layoutQuantity=(RelativeLayout) mView.findViewById(R.id.layout_home_quantity);
+        layoutDate=(RelativeLayout) mView.findViewById(R.id.layout_home_date);
+        layoutFlag=(RelativeLayout) mView.findViewById(R.id.layout_home_flag);
     }
 
     @Override
@@ -41,16 +50,31 @@ public class HomeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         //刷新天气信息
         refreshWeatherInformation();
+
+        layoutLocalRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent("LOCAL_RECORD_ACTIVITY"));
+            }
+        });
+
+        layoutQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent("QUANTITY_ACTIVITY"));
+            }
+        });
     }
 
     public void refreshWeatherInformation() {
-        SharedPreferences sharedPreferences = mView.getContext().getSharedPreferences(WeatherHelperSP.PREFERENCES_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = mView.getContext().getSharedPreferences(WeatherSP.PREFERENCES_NAME, Context.MODE_PRIVATE);
         String status = sharedPreferences.getString("status", "");
         if (status.equals("ok")) {
             String content = sharedPreferences.getString("city", "");
             content += "\n" + sharedPreferences.getString("weather", "")
                     + "," + sharedPreferences.getString("temperature", "");
             textWeatherInformation.setText(content);
+
         } else {
             textWeatherInformation.setText(status);
         }

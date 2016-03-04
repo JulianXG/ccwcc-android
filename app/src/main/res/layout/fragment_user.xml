@@ -7,6 +7,7 @@
 
     <!-- 我的资料-->
     <RelativeLayout style="@style/list_functional_layout"
+        android:id="@+id/layout_user_profile"
         android:layout_marginTop="@dimen/large_padding_size">
 
         <TextView style="@style/list_text_caption"
@@ -16,19 +17,10 @@
 
     </RelativeLayout>
 
-    <!-- 离线数据库-->
-    <RelativeLayout style="@style/list_functional_layout"
-        android:layout_marginTop="@dimen/large_padding_size">
-
-
-        <TextView style="@style/list_text_caption"
-            android:text="@string/text_user_offline_db"/>
-
-        <include layout="@layout/layout_right_arrow" />
-    </RelativeLayout>
 
     <!-- 关于我们-->
     <RelativeLayout style="@style/list_functional_layout"
+        android:id="@+id/layout_user_about"
         android:layout_marginTop="@dimen/large_padding_size">
         <TextView style="@style/list_text_caption"
             android:text="@string/text_user_about"/>

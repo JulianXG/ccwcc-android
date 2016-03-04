@@ -35,7 +35,7 @@
             <android.support.v4.app.FragmentTabHost
                 android:id="@android:id/tabhost"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/bottom_toolbar_height"
+                android:layout_height="@dimen/bottom_tab_height"
                 android:background="@color/app_background">
 
                 <FrameLayout

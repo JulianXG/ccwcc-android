@@ -1,10 +1,19 @@
 package com.kalyter.ccwcc.util;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.kalyter.ccwcc.R;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -17,10 +26,29 @@ import java.net.URL;
 * 输入参数JSONObject，地址(location包括参数)、方法类型(method)和如果有的话POST内容(content)JSONObject类型
 * 返回从http端接收到的JSON信息
 * */
-public class HttpHelperAsyncTask extends AsyncTask<JSONObject,Object,JSONObject> {
+public class HttpHelperAsyncTask extends AsyncTask<JSONObject,Void,JSONObject> {
 
     //在这里集成了baiduapikey，因为没有太好的办法，留作下次的改进
     private final String baiduAPIKEY = "d32c029b09c36071eab5684ca53331c2";
+    private AlertDialog mAlertDialog;
+    private Context mContext;
+
+    public HttpHelperAsyncTask(Context mContext) {
+        this.mContext = mContext;
+        LinearLayout layout = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.layout_loading, null);
+        mAlertDialog = new AlertDialog.Builder(mContext)
+                .setView(layout)
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        onCancelled();
+                        mAlertDialog.dismiss();
+                    }
+                })
+                .setCancelable(false)
+                .create();
+        mAlertDialog.show();
+    }
 
     @Override
     protected JSONObject doInBackground(JSONObject... params) {
@@ -33,6 +61,7 @@ public class HttpHelperAsyncTask extends AsyncTask<JSONObject,Object,JSONObject>
             connection.setRequestProperty("devicemodel", Build.DEVICE);
             connection.setRequestProperty("os","Android");
             connection.setRequestProperty("osver", Build.VERSION.RELEASE);
+            connection.setRequestProperty("token",jsonParam.getString("token"));
             String method=jsonParam.getString("method");
             connection.setConnectTimeout(5000);
             connection.setRequestProperty("Accept-Charset", "utf-8");
@@ -45,16 +74,21 @@ public class HttpHelperAsyncTask extends AsyncTask<JSONObject,Object,JSONObject>
                 connection.setInstanceFollowRedirects(false);
                 connection.connect();
                 DataOutputStream dataOutputStream=new DataOutputStream(connection.getOutputStream());
+                byte[] byteContext;
                 JSONObject context=jsonParam.getJSONObject("content");
-                byte[] byteContext = context.toJSONString().getBytes("UTF-8");
+                if (context == null) {
+                    JSONArray array = jsonParam.getJSONArray("array");
+                    byteContext = array.toJSONString().getBytes("UTF-8");
+                } else {
+                    byteContext = context.toJSONString().getBytes("UTF-8");
+                }
                 dataOutputStream.write(byteContext);
                 dataOutputStream.flush();
                 dataOutputStream.close();
                 connection.connect();
             }
             if(connection.getResponseCode()!= HttpURLConnection.HTTP_OK){
-                System.out.println("连接失败，请重试！");
-                jsonResponse.put("status", "error");
+                jsonResponse.put("status_http_helper", "error");
             }else {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
                 String line, content;
@@ -66,14 +100,18 @@ public class HttpHelperAsyncTask extends AsyncTask<JSONObject,Object,JSONObject>
                 content = new String(stringBuilder.toString().getBytes("UTF-8"));
                 jsonResponse = JSON.parseObject(content);
                 jsonResponse.put("status_http_helper", "ok");
-                return jsonResponse;
             }
-        } catch (IOException e) {
+        } catch (JSONException|IOException e) {
             e.printStackTrace();
             return null;
         }
-        return null;
+        return jsonResponse;
     }
 
+    @Override
+    protected void onPostExecute(JSONObject jsonObject) {
+        super.onPostExecute(jsonObject);
+        mAlertDialog.dismiss();
+    }
 
 }

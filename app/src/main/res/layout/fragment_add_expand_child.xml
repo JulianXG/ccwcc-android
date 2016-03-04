@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="@dimen/element_height">
 
-    <TextView
-        android:id="@+id/text_add_birds"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"/>
+    <CheckBox style="@style/center_left_style"
+        android:id="@+id/checkbox_expand"
+        android:layout_width="0dp"
+        android:layout_weight="6"/>
+
+
+    <EditText style="@style/center_left_style"
+        android:id="@+id/edit_expand_quantity"
+        android:hint="@string/hint_add_quantity"
+        android:inputType="number"
+        android:layout_width="0dp"
+        android:visibility="invisible"
+        android:layout_weight="4"/>
+
 </LinearLayout>
+
+
