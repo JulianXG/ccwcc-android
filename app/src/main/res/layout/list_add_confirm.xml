@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:clickable="true"
-    android:focusable="true"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:clickable="true"
+              android:focusable="true"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout style="@style/list_container"
+                  android:orientation="horizontal"
+                  android:layout_height="match_parent"
+                  android:layout_width="0dp"
+                  android:layout_weight="1">
+
+        <TextView style="@style/simple_text_left_padding"
+                  android:id="@+id/text_add_confirm_list_index"/>
+
+        <TextView style="@style/simple_text_left_padding"
+                  android:id="@+id/text_add_confirm_list_name"/>
 
 
-    <TextView style="@style/text_confirm_list_style"
-        android:id="@+id/text_add_confirm_list_index"
-        android:layout_alignParentLeft="true" />
+        <TextView style="@style/simple_text_left_padding"
+                  android:id="@+id/text_add_confirm_list_quantity"/>
+    </LinearLayout>
 
-    <TextView style="@style/text_confirm_list_style"
-        android:id="@+id/text_add_confirm_list_name"
-        android:layout_toRightOf="@id/text_add_confirm_list_index" />
-
-
-    <TextView style="@style/text_confirm_list_style"
-        android:id="@+id/text_add_confirm_list_quantity"
-        android:layout_toRightOf="@id/text_add_confirm_list_name" />
 
     <Button
-        android:id="@+id/button_add_confirm_list_delete"
-        android:layout_width="80dp"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:layout_alignParentRight="true"
-        android:background="@android:color/holo_red_light"
-        android:text="@string/caption_delete"/>
+            android:id="@+id/button_add_confirm_list_delete"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="@android:color/holo_red_light"
+            android:text="@string/caption_delete"/>
 
-
-</RelativeLayout>
+</LinearLayout>

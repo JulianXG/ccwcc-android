@@ -6,13 +6,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 import com.kalyter.ccwcc.R;
 
 public class UserFragment extends Fragment {
 
-    private RelativeLayout layoutProfile, layoutAbout;
+    private LinearLayout layoutProfile, layoutAbout;
     private View mView;
 
     @Override
@@ -34,8 +34,8 @@ public class UserFragment extends Fragment {
         if (parent != null) {
             parent.removeView(mView);
         }
-        layoutProfile = (RelativeLayout) mView.findViewById(R.id.layout_user_profile);
-        layoutAbout = (RelativeLayout) mView.findViewById(R.id.layout_user_about);
+        layoutProfile = (LinearLayout) mView.findViewById(R.id.layout_user_profile);
+        layoutAbout = (LinearLayout) mView.findViewById(R.id.layout_user_about);
     }
 
     private void setListenerToLayoutAbout(){

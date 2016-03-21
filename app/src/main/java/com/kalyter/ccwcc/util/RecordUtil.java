@@ -14,6 +14,17 @@ import java.util.concurrent.ExecutionException;
 public class RecordUtil {
 
     private Context mContext;
+    public static final String CODE_KEY = "code";
+    public static final String BIRD_NAME_KEY = "birdName";
+    public static final String QUANTITY_KEY = "quantity";
+    public static final String LAT_KEY = "lat";
+    public static final String LON_KEY = "lon";
+    public static final String POSITION_KEY = "position";
+    public static final String DETAIL_KEY = "detail";
+    public static final String WEATHER_KEY = "weather";
+    public static final String DATETIME_KEY = "datetime";
+    public static final String RECORD_INDEX_KEY = "recordIndex";
+
 
     public RecordUtil(Context mContext) {
         this.mContext = mContext;
@@ -22,42 +33,24 @@ public class RecordUtil {
     public boolean submitRecord(JSONArray record) {
         HttpHelperAsyncTask http=new HttpHelperAsyncTask(mContext);
         JSONObject httpParameter = new JSONObject();
-        final String API_LOCATION = "http://ebirdnote.cn/xgweb/api/record/submitrecord";
-        httpParameter.put("location", API_LOCATION);
+        httpParameter.put("location", HttpHelperAsyncTask.SUBMIT_RECORD_API);
         httpParameter.put("method", "POST");
         httpParameter.put("array", record);
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(LoginSP.PREFERENCES_NAME, Context.MODE_PRIVATE);
         httpParameter.put("token", sharedPreferences.getString("token",null));
-        System.out.println(httpParameter.toJSONString());
         try {
             JSONObject result = http.execute(httpParameter).get();
-            System.out.println(result.toJSONString());
             if (result != null && result.getString("status_http_helper").equals("ok")) {
                 String message = result.getJSONObject("status").getString("message");
                 if (message.equals("SERVER_CALL_SUCCESS")) {
                     Toast.makeText(mContext, "上传成功", Toast.LENGTH_SHORT).show();
                     return true;
-                }else if (message.equals("SERVER_CALL_ERROR")){
-                    Toast.makeText(mContext, "上传失败", Toast.LENGTH_SHORT).show();
-                    return false;
-                }else if (message.equals("TOKEN_NOT_EXISTS")) {
-                    Toast.makeText(mContext, "用户登录信息已过时，正在重新登录", Toast.LENGTH_SHORT).show();
-                    LoginSP login = new LoginSP(mContext);
-                    login.updateToken();
-                    submitRecord(record);
-                }else if (message.equals("USER_NAME_OR_PASSWORD_ERROR")){
-                    Toast.makeText(mContext, "用户名密码错误，请重新登录", Toast.LENGTH_SHORT).show();
-                    mContext.startActivity(new Intent("LOGIN_ACTIVITY"));
-                    return false;
                 }
-            }else if(result.getString("status_http_helper").equals("error")){
-                Toast.makeText(mContext, "网络错误，请检查是否有网络", Toast.LENGTH_SHORT).show();
-                return false;
             }
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 
-        return true;
+        return false;
     }
 }

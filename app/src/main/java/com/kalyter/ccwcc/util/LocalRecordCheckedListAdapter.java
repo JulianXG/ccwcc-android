@@ -56,9 +56,9 @@ public class LocalRecordCheckedListAdapter extends BaseAdapter {
         textQuantity = (TextView) convertView.findViewById(R.id.text_home_local_quantity);
         checkBox = (CheckBox) convertView.findViewById(R.id.checkbox_local);
 
-        textBirdName.setText(record.getJSONObject(position).getString("birdname"));
+        textBirdName.setText(record.getJSONObject(position).getString("birdName"));
         textDate.setText(record.getJSONObject(position).getString("datetime"));
-        textQuantity.setText(record.getJSONObject(position).getString("birdquantity"));
+        textQuantity.setText(record.getJSONObject(position).getString("quantity"));
         try {
             checkBox.setChecked(getIsSelected().get(position));
         } catch (NullPointerException e) {

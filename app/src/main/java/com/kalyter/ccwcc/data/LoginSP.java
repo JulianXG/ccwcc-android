@@ -15,8 +15,11 @@ import java.util.concurrent.ExecutionException;
 * */
 public class LoginSP {
 
-    private final String LOGIN_API_LOCATION = "http://ebirdnote.cn/xgweb/api/user/login";
     public static final String PREFERENCES_NAME = "user";
+    public static final String USER_NAME_KEY = "userName";
+    public static final String NICKNAME_KEY = "nickname";
+    public static final String CHECK_POINT_KEY = "checkPoint";
+    public static final String STATUS_KEY = "status";
     private SharedPreferences mSharedPreference;
     private Context mContext;
 
@@ -30,9 +33,9 @@ public class LoginSP {
         try {
             JSONObject jsonPOST = new JSONObject();
             JSONObject content = new JSONObject();
-            content.put("usrname", userName);
-            content.put("pwd", password);
-            jsonPOST.put("location",LOGIN_API_LOCATION);
+            content.put(USER_NAME_KEY, userName);
+            content.put("password", password);
+            jsonPOST.put("location",HttpHelperAsyncTask.LOGIN_API_LOCATION);
             jsonPOST.put("method", "POST");
             jsonPOST.put("content", content);
             JSONObject result = httpHelperAsyncTask.execute(jsonPOST).get();
@@ -40,11 +43,11 @@ public class LoginSP {
             if (result.getJSONObject("status").getInteger("code") == 666) {
                 mSharedPreference = mContext.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor=mSharedPreference.edit();
-                editor.putString("status", "success");
-                editor.putString("username", userName);
+                editor.putString(STATUS_KEY, "success");
+                editor.putString(USER_NAME_KEY, userName);
                 editor.putString("password", password);
-                editor.putString("nickname", result.getJSONObject("data").getString("nickname"));
-                editor.putString("checkpoint", result.getJSONObject("data").getString("checkpoint"));
+                editor.putString(NICKNAME_KEY, result.getJSONObject("data").getString(NICKNAME_KEY));
+                editor.putString(CHECK_POINT_KEY, result.getJSONObject("data").getString(CHECK_POINT_KEY));
                 editor.putString("token", result.getJSONObject("data").getString("token"));
                 editor.apply();
                 return true;
@@ -59,7 +62,7 @@ public class LoginSP {
     }
 
     public boolean updateToken(){
-        String userName = mSharedPreference.getString("username", "");
+        String userName = mSharedPreference.getString(USER_NAME_KEY, "");
         String password=mSharedPreference.getString("password","");
         return login(userName, password);
     }

@@ -6,27 +6,43 @@
 
 
     <!-- 我的资料-->
-    <RelativeLayout style="@style/list_functional_layout"
-        android:id="@+id/layout_user_profile"
-        android:layout_marginTop="@dimen/large_padding_size">
+    <include layout="@layout/divider_horizon_padding"
+             android:layout_width="match_parent"
+             android:layout_height="1px"
+             android:layout_marginTop="@dimen/large_padding_size"/>
+    <LinearLayout style="@style/list_container"
+        android:id="@+id/layout_user_profile">
 
-        <TextView style="@style/list_text_caption"
-            android:text="@string/text_user_user_caption"/>
+        <LinearLayout style="@style/list_function_element">
+            <TextView style="@style/caption_only"
+                      android:text="@string/text_user_user_caption"/>
 
-        <include layout="@layout/layout_right_arrow" />
+            <include layout="@layout/right_arrow" />
+        </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
+    <include layout="@layout/divider"/>
+
 
 
     <!-- 关于我们-->
-    <RelativeLayout style="@style/list_functional_layout"
-        android:id="@+id/layout_user_about"
-        android:layout_marginTop="@dimen/large_padding_size">
-        <TextView style="@style/list_text_caption"
-            android:text="@string/text_user_about"/>
+    <include layout="@layout/divider_horizon_padding"
+             android:layout_width="match_parent"
+             android:layout_height="1px"
+             android:layout_marginTop="@dimen/large_padding_size"/>
 
-        <include layout="@layout/layout_right_arrow" />
-    </RelativeLayout>
+    <LinearLayout style="@style/list_container" android:id="@+id/layout_user_about">
 
+        <LinearLayout style="@style/list_function_element">
+
+            <TextView
+                style="@style/caption_only"
+                android:text="@string/text_user_about"/>
+
+            <include layout="@layout/right_arrow"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <include layout="@layout/divider"/>
 
 </LinearLayout>

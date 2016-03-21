@@ -7,26 +7,25 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONArray;
 import com.kalyter.ccwcc.R;
 
 public class RecordListAdapter extends BaseAdapter{
 
-    private JSONArray mJSONArray;
+    private static JSONArray data;
     private Context mContext;
     private TextView textName,textQuantity,textIndex;
     private Button buttonDelete;
 
-    public RecordListAdapter(Context mContext, JSONArray mJSONArray) {
+    public RecordListAdapter(Context mContext, JSONArray data) {
         this.mContext = mContext;
-        this.mJSONArray = mJSONArray;
+        this.data = data;
     }
 
     @Override
     public int getCount() {
-        return mJSONArray.size();
+        return data.size();
     }
 
     @Override
@@ -44,20 +43,20 @@ public class RecordListAdapter extends BaseAdapter{
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.list_add_confirm, null);
         }
-        if (!mJSONArray.getJSONObject(position).isEmpty()) {
+        if (!data.getJSONObject(position).isEmpty()) {
             buttonDelete=(Button) convertView.findViewById(R.id.button_add_confirm_list_delete);
             textName = (TextView) convertView.findViewById(R.id.text_add_confirm_list_name);
             textQuantity = (TextView) convertView.findViewById(R.id.text_add_confirm_list_quantity);
             textIndex = (TextView) convertView.findViewById(R.id.text_add_confirm_list_index);
 
-            textName.setText(mJSONArray.getJSONObject(position).getString("birdname"));
-            textQuantity.setText(mJSONArray.getJSONObject(position).getString("birdquantity"));
-            textIndex.setText((position+1)+"");
+            textName.setText(data.getJSONObject(position).getString(RecordUtil.BIRD_NAME_KEY));
+            textQuantity.setText(data.getJSONObject(position).getString(RecordUtil.QUANTITY_KEY));
+            textIndex.setText(String.valueOf(position + 1));
 
             buttonDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mJSONArray.remove(position);
+                    data.remove(position);
                     notifyDataSetChanged();
                 }
             });
@@ -66,5 +65,7 @@ public class RecordListAdapter extends BaseAdapter{
         return convertView;
     }
 
-
+    public JSONArray getData() {
+        return data;
+    }
 }

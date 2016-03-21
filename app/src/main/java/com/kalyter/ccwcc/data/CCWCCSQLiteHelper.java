@@ -28,6 +28,7 @@ public class CCWCCSQLiteHelper {
     private final String  CCWCC_DATABASE_NAME="ccwcc.db";
     private final String CCWCC_FILE_ABSOLUTE_PATH=CCWCC_DATABASE_PATH+CCWCC_DATABASE_NAME;
     private final int CURRENT_VERSION=1;
+    public static final String NO_SPECIES_NAME_TAG = "未被分类";
 
     public CCWCCSQLiteHelper(Context context) {
         this.mContext = context;
@@ -51,6 +52,7 @@ public class CCWCCSQLiteHelper {
                 outputStream.flush();
                 outputStream.close();
                 inputStream.close();
+                ccwccDatabase = SQLiteDatabase.openOrCreateDatabase(CCWCC_FILE_ABSOLUTE_PATH, null);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -63,12 +65,18 @@ public class CCWCCSQLiteHelper {
         Vector<String> species = getBirdsSpecies();
         String sql = "SELECT code,namezh FROM birds WHERE category=?";
         for (String s : species) {
-            Cursor cursor = ccwccDatabase.rawQuery(sql, new String[]{s});
+            Cursor cursor;
+            if (s.equals(NO_SPECIES_NAME_TAG)) {
+                cursor = ccwccDatabase.rawQuery(sql, new String[]{""});
+            }else {
+                cursor= ccwccDatabase.rawQuery(sql, new String[]{s});
+            }
             Vector<String> name = new Vector<>();
             while (cursor.moveToNext()) {
                 name.add(cursor.getString(1));
             }
             results.put(s, name);
+            cursor.close();
         }
         return results;
     }
@@ -78,7 +86,12 @@ public class CCWCCSQLiteHelper {
         String sql = "SELECT DISTINCT category FROM birds";
         Cursor cursor = ccwccDatabase.rawQuery(sql, null);
         while (cursor.moveToNext()) {
-            species.add(cursor.getString(0));
+            String s = cursor.getString(0);
+            if (!s.equals("")) {
+                species.add(s);
+            }else {
+                species.add(NO_SPECIES_NAME_TAG);
+            }
         }
         return species;
     }

@@ -1,6 +1,5 @@
 package com.kalyter.ccwcc.ui.main;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.widget.DrawerLayout;
@@ -64,9 +63,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this
-                , drawerLayout
-                , toolbar, R.string.app_name, R.string.app_name);
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerToggle.syncState();
         drawerLayout.setDrawerListener(drawerToggle);
     }
@@ -85,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             //将Tab按钮添加进Tab选项卡中
             fragmentTabHost.addTab(tabSpec,fragmentArray[i],null);
             //设置Tab按钮背景
-            fragmentTabHost.getTabWidget().getChildAt(i).setBackgroundResource(R.color.app_background);
+            fragmentTabHost.getTabWidget().getChildAt(i).setBackgroundResource(R.color.content_color);
         }
     }
 

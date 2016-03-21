@@ -2,23 +2,19 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_focused="true">
         <shape>
-            <solid android:color="@color/colorAccent" />
+            <solid android:color="@color/pressed_color" />
         </shape>
     </item>
 
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="@color/colorAccent" />
+            <solid android:color="@color/pressed_color" />
         </shape>
     </item>
 
     <item>
         <shape>
-            <solid android:color="@color/list_bg_color" />
-            <stroke android:color="@color/divider_color"
-                android:dashGap="0dp"
-                android:dashWidth="1px"
-                android:width="1px"/>
+            <solid android:color="@color/content_color" />
         </shape>
 
     </item>

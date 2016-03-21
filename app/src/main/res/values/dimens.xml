@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="left_drawer_width">240dp</dimen>
-
-
     <dimen name="toolbar_height">50dp</dimen>
     <dimen name="bottom_tab_height" >50dp</dimen>
-    <dimen name="element_height">40dp</dimen>
-    <dimen name="home_bg_height">180dp</dimen>
-    <dimen name="home_function_height">120dp</dimen>
-
-    <dimen name="add_list_confirm_height">120dp</dimen>
-    <dimen name="add_list_confirm_element_height">50dp</dimen>
-
-    <dimen name="padding_main_tab_size">2dp</dimen>
     <dimen name="small_padding_size">4dp</dimen>
     <dimen name="common_padding_size">20dp</dimen>
     <dimen name="large_padding_size">40dp</dimen>
 
-    <dimen name="dp_10">10dp</dimen>
+    <dimen name="list_item_height">40dp</dimen>
+
+    <dimen name="home_bg_height">180dp</dimen>
+
+    <dimen name="add_list_confirm_height">142dp</dimen>
+
+    <dimen name="padding_main_tab_size">2dp</dimen>
+
+    <dimen name="comfort_padding_size">10dp</dimen>
 
     <dimen name="add_confirm_font_size">40sp</dimen>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="launch_text_size">20sp</dimen>
+
 </resources>

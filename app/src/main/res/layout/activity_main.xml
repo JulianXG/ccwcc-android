@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <!-- 顶部工具栏-->
-    <include layout="@layout/layout_toolbar" />
+    <include layout="@layout/toolbar" />
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/layout_main_left_drawer"
@@ -35,8 +35,7 @@
             <android.support.v4.app.FragmentTabHost
                 android:id="@android:id/tabhost"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/bottom_tab_height"
-                android:background="@color/app_background">
+                android:layout_height="@dimen/bottom_tab_height">
 
                 <FrameLayout
                     android:id="@android:id/tabcontent"

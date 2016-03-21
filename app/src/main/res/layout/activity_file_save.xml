@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar"/>
+    <!--当前选择目录-->
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:background="@color/app_background"
+            android:layout_height="@dimen/list_item_height">
+        <TextView style="@style/caption"
+                android:text="@string/caption_popup_chooser_and_save_directory"/>
+        
+        <TextView style="@style/content"
+                android:id="@+id/text_file_chooser_save_directory"/>
+    </LinearLayout>
+    <include layout="@layout/divider_horizon_padding"/>
+
+    <ListView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/list_file_chooser_save"/>
+    <include layout="@layout/divider_horizon_padding"/>
+
+    <!--目录列表-->
+
+    <!--文件名-->
+    <include layout="@layout/divider_horizon_padding"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:background="@color/app_background"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_item_height">
+
+        <TextView
+                style="@style/caption"
+                android:text="@string/caption_file_chooser_save_filename"/>
+
+        <EditText style="@style/list_edit"
+                  android:hint="@string/hint_file_save_edit_filename"
+                android:id="@+id/edit_file_chooser_save_filename"/>
+
+    </LinearLayout>
+
+    <include layout="@layout/divider_horizon_padding"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_item_height"
+            android:background="@color/app_background"
+            android:gravity="center">
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/button_file_chooser_save_cancel"
+                android:text="@string/caption_cancel"/>
+
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/button_file_chooser_save_confirm"
+                android:text="@string/caption_confirm"/>
+
+    </LinearLayout>
+
+</LinearLayout>

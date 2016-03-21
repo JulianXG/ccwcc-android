@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.kalyter.ccwcc.R;
 import com.kalyter.ccwcc.data.LoginSP;
+import com.kalyter.ccwcc.util.RecordUtil;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -26,9 +27,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void initialProfiles() {
         SharedPreferences sharedPreferences = getSharedPreferences(LoginSP.PREFERENCES_NAME, MODE_PRIVATE);
-        textUserName.setText(sharedPreferences.getString("username",""));
-        textNickname.setText(sharedPreferences.getString("nickname",""));
-        textCity.setText(sharedPreferences.getString("checkpoint",""));
+        textUserName.setText(sharedPreferences.getString(LoginSP.USER_NAME_KEY,""));
+        textNickname.setText(sharedPreferences.getString(LoginSP.NICKNAME_KEY,""));
+        textCity.setText(sharedPreferences.getString(LoginSP.CHECK_POINT_KEY,""));
     }
 
     private void initialToolbar() {

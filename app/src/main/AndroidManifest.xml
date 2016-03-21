@@ -97,11 +97,45 @@
             </intent-filter>
         </activity>
 
+        <!-- 数量统计界面-->
         <activity android:name=".ui.main.tab.home.QuantityActivity">
             <intent-filter>
                 <action android:name="QUANTITY_ACTIVITY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!--另存为Excel文件-->
+        <activity android:name=".util.SaveFileUtilActivity">
+            <intent-filter>
+                <action android:name="SAVE_FILE_UTIL_ACTIVITY"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <!-- 日期界面统计-->
+        <activity android:name=".ui.main.tab.home.DateStatisticsActivity">
+            <intent-filter>
+                <action android:name="DATE_STATISTICS_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- 旗标界面-->
+        <activity android:name=".ui.main.tab.home.FlagActivity">
+
+            <intent-filter>
+                <action android:name="FLAG_ACTIVITY"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <!-- 批量添加-->
+        <activity android:name=".ui.main.tab.add.BatchAddActivity">
+            <intent-filter>
+                <action android:name="BATCH_ADD_ACTIVITY"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
     </application>

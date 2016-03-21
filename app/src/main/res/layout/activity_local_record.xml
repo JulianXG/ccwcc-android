@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/layout_toolbar" />
+    <include layout="@layout/toolbar" />
 
     <ListView
-        android:background="@color/list_bg_color"
+        android:background="@color/content_color"
         android:id="@+id/list_home_local"
         android:layout_weight="1"
         android:layout_width="match_parent"

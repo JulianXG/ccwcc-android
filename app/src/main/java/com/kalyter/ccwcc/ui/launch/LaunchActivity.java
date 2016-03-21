@@ -24,7 +24,7 @@ public class LaunchActivity extends Activity {
         }else {
             intent.setAction("LOGIN_ACTIVITY");
         }
-        final int SPLASH_DISPLAY_TIME=0;//单位毫秒,测试时设为0
+        final int SPLASH_DISPLAY_TIME=1000;//单位毫秒,测试时设为0
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override

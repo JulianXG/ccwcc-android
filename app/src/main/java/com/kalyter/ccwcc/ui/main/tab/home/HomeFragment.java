@@ -9,8 +9,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kalyter.ccwcc.R;
 import com.kalyter.ccwcc.data.WeatherSP;
@@ -19,12 +21,15 @@ import com.kalyter.ccwcc.data.WeatherSP;
 public class HomeFragment extends Fragment {
     private View mView;//定义了这个Fragment里面的view
     private TextView textWeatherInformation;
-    private RelativeLayout layoutLocalRecord,layoutDate,layoutQuantity,layoutFlag;
+    private LinearLayout layoutLocalRecord,layoutDate,layoutQuantity,layoutFlag;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         findViews(inflater, container);
+        //刷新天气信息
+        refreshWeatherInformation();
+        initialViews();
         return mView;
     }
 
@@ -39,18 +44,13 @@ public class HomeFragment extends Fragment {
             parent.removeView(mView);
         }
         textWeatherInformation=(TextView) mView.findViewById(R.id.text_home_weather_information);
-        layoutLocalRecord=(RelativeLayout) mView.findViewById(R.id.layout_home_local);
-        layoutQuantity=(RelativeLayout) mView.findViewById(R.id.layout_home_quantity);
-        layoutDate=(RelativeLayout) mView.findViewById(R.id.layout_home_date);
-        layoutFlag=(RelativeLayout) mView.findViewById(R.id.layout_home_flag);
+        layoutLocalRecord=(LinearLayout) mView.findViewById(R.id.layout_home_local);
+        layoutQuantity=(LinearLayout) mView.findViewById(R.id.layout_home_quantity);
+        layoutDate=(LinearLayout) mView.findViewById(R.id.layout_home_date);
+        layoutFlag=(LinearLayout) mView.findViewById(R.id.layout_home_flag);
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        //刷新天气信息
-        refreshWeatherInformation();
-
+    private void initialViews() {
         layoutLocalRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +64,21 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent("QUANTITY_ACTIVITY"));
             }
         });
+
+        layoutDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent("DATE_STATISTICS_ACTIVITY"));
+            }
+        });
+
+        layoutFlag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent("FLAG_ACTIVITY"));
+            }
+        });
+
     }
 
     public void refreshWeatherInformation() {

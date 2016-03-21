@@ -3,7 +3,7 @@
 
     <string name="default_city_name">香港</string>
     <string name="text_current_city_caption">当前城市</string>
-    <string name="app_version">版本号1.0</string>
+    <string name="app_version">版本号1.1</string>
     <string name="text_add_expand_caption">名称数量</string>
     <string name="text_add_birds_count_caption">观察数量</string>
 
@@ -36,7 +36,7 @@
     <string name="button_add_addrecord_caption">添加记录</string>
     <string name="caption_delete">删除</string>
     <string name="text_myprofile_about_caption">关于我们</string>
-    <string name="text_myprofile_developers">史本云\t肖刚\t周瑶\t陈浪\t骆攀攀\t杨磊</string>
+    <string name="text_myprofile_developers">史本云\t肖刚\t周遥\t陈浪\t骆攀攀\t杨磊</string>
     <string name="text_contact_list"><a href="http://ebirdnote.cn">http://ebirdnote.cn</a></string>
     <string name="text_contact_caption">联系我们</string>
     <string name="text_myprofile_about_author">关于作者</string>
@@ -47,13 +47,13 @@
     <string name="text_profile_nickname_caption">昵称</string>
     <string name="text_profile_city_caption">城市</string>
     <string name="text_about_version">版本号\t1.0</string>
-    <string name="text_home_local_caption">本地记录</string>
-    <string name="text_home_date_statistics_caption">日期统计</string>
-    <string name="text_home_quantity_caption">鸟种统计</string>
-    <string name="text_home_flag_caption">旗标</string>
+    <string name="caption_local">本地记录</string>
+    <string name="caption_date_statistics">日期统计</string>
+    <string name="caption_quantity">鸟种统计</string>
+    <string name="caption_flag">旗标</string>
     <string name="hint_add_locating">正在定位中...</string>
     <string name="hint_add_quantity">观察数量</string>
-    <string name="hint_add_locate_error">定位失败，请尝试手动填写</string>
+    <string name="hint_add_locate_error">自动定位失败</string>
     <string name="dialog_positive_button_caption_iknow">我知道了</string>
     <string name="dialog_title_warning">警告</string>
     <string name="dialog_title_information">信息</string>
@@ -72,8 +72,37 @@
     <string name="caption_home_local_select_all">全选</string>
     <string name="caption_home_local_upload">上传</string>
     <string name="title_toolbar_local_record">本地记录</string>
-    <string name="title_toolbar_quantity">鸟种统计</string>
+
+
     <string name="caption_expand_add">批量添加</string>
-    <string name="prompt_dialog_empty_error">记录为空，不能保存</string>
-    <string name="caption_button_quantity_save_as_excel">另存为Excel文件</string>
+    <string name="prompt_dialog_empty_error">记录为空</string>
+    <string name="caption_save_as_excel">另存为Excel文件</string>
+    <string name="title_popup_chooser_and_save">另存为Excel文件</string>
+    <string name="caption_popup_chooser_and_save_directory">目录</string>
+    <string name="caption_file_chooser_save_filename">文件名:</string>
+    <string name="caption_cancel">取消</string>
+    <string name="caption_confirm">确认</string>
+    <string name="title_toolbar_file_save">另存为Excel文件</string>
+    <string name="prompt_file_save_success">文件保存成功！</string>
+    <string name="prompt_file_save_failed">文件保存失败，请重试！</string>
+    <string name="hint_file_save_edit_filename">以xsl为后缀名</string>
+    <string name="caption_date_statistics_start_time">起始时间</string>
+    <string name="caption_date_statistics_end_time">截止时间</string>
+    <string name="prompt_date_uncomplete">请填写日期后再获取图像</string>
+    <string name="prompt_date_incorrect">截止日期需要在开始日期之前，请重新选择后重试</string>
+    <string name="prompt_sysytem_error">系统出错，请重试</string>
+    <string name="title_start_date">选择开始日期</string>
+    <string name="title_dialog_choos_date">请选择日期</string>
+    <string name="hint_search_flag">输入关键字搜索鸟种名称</string>
+    <string name="caption_bird_name">鸟种名称</string>
+    <string name="caption_flag_color">旗标颜色</string>
+    <string name="caption_left_hoop">左胫彩环</string>
+    <string name="caption_flag_code">旗标编码</string>
+    <string name="caption_discover_time">发现时间</string>
+    <string name="caption_flag_remarks">旗标备注</string>
+    <string name="hint_flag_flag_code">请填写旗标编号</string>
+    <string name="prompt_information_incomplete">信息输入不完整，请重新填写，并重试</string>
+    <string name="caption_search_add">搜索添加</string>
+    <string name="caption_batch_add">批量添加</string>
+    <string name="hint_prompt_weather">请输入天气及温度</string>
 </resources>

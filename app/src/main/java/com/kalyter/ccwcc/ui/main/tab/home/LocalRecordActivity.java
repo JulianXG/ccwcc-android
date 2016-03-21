@@ -128,7 +128,6 @@ public class LocalRecordActivity extends AppCompatActivity {
                 for (int i = 0; i < isSelected.size(); i++) {
                     if (isSelected.get(i)) {
                         uploadRecord.add(record.get(i));
-                        record.remove(i);
                     }
                 }
 
@@ -142,10 +141,10 @@ public class LocalRecordActivity extends AppCompatActivity {
                         count++;
                     }
                 }
-                recordUtil.submitRecord(uploadRecord);
                 ((LocalRecordCheckedListAdapter) mList.getAdapter()).notifyDataSetChanged();
                 RecordSP recordSP = new RecordSP(LocalRecordActivity.this);
                 recordSP.overrideRecord(record);
+                recordUtil.submitRecord(uploadRecord);
             }
         });
     }

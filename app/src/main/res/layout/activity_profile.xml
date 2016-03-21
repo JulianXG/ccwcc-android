@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.kalyter.ccwcc.ui.main.tab.user.ProfileActivity">
+    android:layout_height="match_parent">
 
-    <include layout="@layout/layout_toolbar" />
+    <include layout="@layout/toolbar" />
 
-    <LinearLayout style="@style/list_container"
-        android:layout_marginTop="@dimen/large_padding_size">
 
-        <include layout="@layout/layout_divider"/>
-        <RelativeLayout style="@style/list_common_layout">
-            <TextView style="@style/list_text_content"
-                android:id="@+id/text_profile_user_name"/>
+    <LinearLayout style="@style/list_container">
+            <!-- 用户名-->
+            <LinearLayout style="@style/list_element">
 
-            <TextView style="@style/list_text_caption"
-                android:text="@string/text_profile_username_caption"/>
-        </RelativeLayout>
+                <TextView style="@style/caption"
+                    android:text="@string/text_profile_username_caption"/>
 
-        <RelativeLayout style="@style/list_common_layout">
+                <TextView style="@style/content_only"
+                          android:id="@+id/text_profile_user_name"/>
 
-            <include layout="@layout/layout_divider" />
-            <TextView style="@style/list_text_caption"
-                android:text="@string/text_profile_nickname_caption"/>
+            </LinearLayout>
 
-            <TextView style="@style/list_text_content"
-                android:id="@+id/text_profile_nickname"/>
-        </RelativeLayout>
+            <!-- 昵称-->
+            <include layout="@layout/divider_horizon_padding"/>
+            <LinearLayout style="@style/list_element">
 
-        <RelativeLayout style="@style/list_common_layout">
+                <TextView style="@style/caption"
+                    android:text="@string/text_profile_nickname_caption"/>
 
-            <include layout="@layout/layout_divider" />
-            <TextView style="@style/list_text_caption"
-                android:text="@string/text_profile_city_caption"/>
-            <TextView style="@style/list_text_content"
-                android:id="@+id/text_profile_city"/>
-        </RelativeLayout>
-        <include layout="@layout/layout_divider" />
+                <TextView style="@style/content_only"
+                    android:id="@+id/text_profile_nickname"/>
+            </LinearLayout>
+
+            <!-- 城市-->
+            <include layout="@layout/divider_horizon_padding"/>
+            <LinearLayout style="@style/list_element">
+
+                <TextView style="@style/caption"
+                    android:text="@string/text_profile_city_caption"/>
+
+                <TextView style="@style/content_only"
+                    android:id="@+id/text_profile_city"/>
+            </LinearLayout>
 
     </LinearLayout>
-
-
+    <include layout="@layout/divider"/>
 
 
 </LinearLayout>

@@ -1,13 +1,10 @@
 package com.kalyter.ccwcc.ui.main.tab.add;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,17 +14,17 @@ import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.kalyter.ccwcc.R;
-import com.kalyter.ccwcc.data.CCWCCSQLiteHelper;
 import com.kalyter.ccwcc.data.LoginSP;
 import com.kalyter.ccwcc.data.RecordSP;
 import com.kalyter.ccwcc.data.WeatherSP;
@@ -36,28 +33,28 @@ import com.kalyter.ccwcc.util.BirdsExpandableListAdapter;
 import com.kalyter.ccwcc.util.DateTimePicker;
 import com.kalyter.ccwcc.util.RecordListAdapter;
 import com.kalyter.ccwcc.util.RecordUtil;
+import com.kalyter.ccwcc.util.SearchViewUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class AddFragment extends Fragment {
 
     private View mView;
-    private Button buttonLocate,buttonWeatherToday,buttonSaveLocal,buttonUpload, buttonAddRecord;
-    private TextView  textDateTime,textBirds;
-    private EditText editLocation,editWeather,editDeatail;
-    private PopupWindow popupExpandBirds;
-    private RelativeLayout layoutDate,layoutBirds;
-    private ListView listConfirm;
-    private JSONArray record=new JSONArray();
+    private Button buttonLocate,buttonWeatherToday,buttonSaveLocal,buttonUpload,buttonSearchAdd,buttonBatchAdd;
+    private TextView  textDateTime;
+    private EditText editLocation,editWeather, editDetail;
+    private LinearLayout layoutDate;
+    private JSONArray information = new JSONArray();    //这个只是显示在确认列表中的，鸟名称和数量
     private SearchView mSearchView;
-    BirdsExpandableListAdapter birdsExpandableListAdapter;
+    private ListView listConfirm;
+    private RecordListAdapter recordAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         findViews(inflater, container);
+        initialListeners();
+        initialActions();
         return mView;
     }
 
@@ -77,21 +74,13 @@ public class AddFragment extends Fragment {
         buttonWeatherToday = (Button) mView.findViewById(R.id.button_add_today_weather);
         buttonUpload = (Button) mView.findViewById(R.id.button_add_upload);
         buttonSaveLocal = (Button) mView.findViewById(R.id.button_add_local);
-        layoutBirds = (RelativeLayout) mView.findViewById(R.id.layout_add_birds);
-        layoutDate = (RelativeLayout) mView.findViewById(R.id.layout_add_date);
+        layoutDate = (LinearLayout) mView.findViewById(R.id.layout_add_date);
         textDateTime = (TextView) mView.findViewById(R.id.text_add_date);
-        textBirds = (TextView) mView.findViewById(R.id.text_add_birds);
-        listConfirm = (ListView) mView.findViewById(R.id.list_add_confirm);
-        buttonAddRecord = (Button) mView.findViewById(R.id.button_add_addrecord);
         mSearchView = (SearchView) mView.findViewById(R.id.search_view_add);
-        editDeatail = (EditText) mView.findViewById(R.id.edit_add_detail);
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initialListeners();
-        initialActions();
+        editDetail = (EditText) mView.findViewById(R.id.edit_add_detail);
+        listConfirm=(ListView) mView.findViewById(R.id.list_add_confirm);
+        buttonSearchAdd=(Button) mView.findViewById(R.id.button_add_search_add);
+        buttonBatchAdd=(Button) mView.findViewById(R.id.button_add_batch_add);
     }
 
     private void initialActions() {
@@ -102,38 +91,19 @@ public class AddFragment extends Fragment {
         textDateTime.setText(dateFormat.format(new Date()));
         //初始化天气
         refreshWeatherInformation();
+
     }
 
     private void initialListeners() {
         setListenerLocate();
-        setListenerBirdsLayout();
         setListenerDateLayout();
         setListenerTodayWeather();
         setListenerButtonSaveLocal();
         setListenerListConfirm();
-        setListenerAddRecord();
         setListenerSearchView();
         setListenerUpload();
-    }
-
-    private void setListenerBirdsLayout() {
-        layoutBirds.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                View expandView = LayoutInflater.from(mView.getContext()).inflate(R.layout.fragment_add_expand, null);
-                final ExpandableListView expandBirds = (ExpandableListView) expandView.findViewById(R.id.expand_add_birds);
-                popupExpandBirds = new PopupWindow(expandView
-                        , ViewGroup.LayoutParams.MATCH_PARENT
-                        , ViewGroup.LayoutParams.MATCH_PARENT);
-                popupExpandBirds.setOutsideTouchable(false);
-                popupExpandBirds.setFocusable(true);
-                popupExpandBirds.setTouchable(true);
-                popupExpandBirds.setBackgroundDrawable(mView.getResources().getDrawable(R.color.list_bg_color));
-                popupExpandBirds.showAsDropDown(mView.getRootView().findViewById(R.id.toolbar));
-                birdsExpandableListAdapter = new BirdsExpandableListAdapter(mView, popupExpandBirds);
-                expandBirds.setAdapter(birdsExpandableListAdapter);
-            }
-        });
+        setSearchAdd();
+        setBatchAdd();
     }
 
     private void setListenerLocate() {
@@ -170,7 +140,7 @@ public class AddFragment extends Fragment {
         layoutDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DateTimePicker(mView, textDateTime).DateTimePickerDialog();
+                new DateTimePicker(mView.getContext(), textDateTime).showDateTimePickerDialog();
             }
         });
     }
@@ -186,190 +156,131 @@ public class AddFragment extends Fragment {
 
     private void refreshWeatherInformation() {
         SharedPreferences sharedPreferences = mView.getContext().getSharedPreferences(WeatherSP.PREFERENCES_NAME, Context.MODE_PRIVATE);
-        editWeather.setText(sharedPreferences.getString("weather", ""));
-        editWeather.append("," + sharedPreferences.getString("temperature", ""));
+        String weather = sharedPreferences.getString("weather", "");
+        String temperature = sharedPreferences.getString("temperature", "");
+        if (!weather.equals("") && !weather.equals("")) {
+            editWeather.setText(weather);
+            editWeather.append("," + temperature);
+        }
     }
 
     private void setListenerButtonSaveLocal(){
         buttonSaveLocal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!record.isEmpty()) {
+                if (checkInformationIntegrity()) {
                     RecordSP recordSP = new RecordSP(mView.getContext());
-                    recordSP.saveRecord(record);
+                    recordSP.saveRecord(integrateRecord());
                     initialAllViews();
                     Toast.makeText(mView.getContext(), R.string.prompt_add_save_local_success, Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(mView.getContext(), R.string.prompt_dialog_empty_error, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mView.getContext(), R.string.prompt_information_incomplete, Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
     private void initialAllViews() {
-        textBirds.setText("");
-        editDeatail.setText("");
-        record.clear();
+        editDetail.setText("");
+        information.clear();
         ((RecordListAdapter) listConfirm.getAdapter()).notifyDataSetChanged();
     }
 
     private void setListenerListConfirm() {
-        RecordListAdapter recordAdapter = new RecordListAdapter(mView.getContext(),record);
+        recordAdapter = new RecordListAdapter(mView.getContext(),information);
         listConfirm.setAdapter(recordAdapter);
     }
 
-    private void setListenerAddRecord(){
-        buttonAddRecord.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //每一组里面7个元素
-                if (editLocation.length() == 0 || editWeather.length() == 0 || textBirds.length() == 0) {
-                    new AlertDialog.Builder(mView.getContext())
-                            .setTitle(mView.getResources().getString(R.string.dialog_title_warning))
-                            .setMessage(mView.getResources().getString(R.string.dialog_message_incomplete))
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .setPositiveButton(mView.getResources().getString(R.string.dialog_positive_button_caption_iknow), null).create().show();
-                } else {
-                    addRecordTemporary();
-                    textBirds.setText("");
-                    editDeatail.setText("");
-                    ((RecordListAdapter) listConfirm.getAdapter()).notifyDataSetChanged();
-                }
-            }
-        });
+    private boolean checkInformationIntegrity(){
+        if (editLocation.getText().equals("") ||editWeather.getText().equals("")||information.isEmpty()){
+                return false;
+        }
+        return true;
     }
 
-
-    private void addRecordTemporary() {
-        CCWCCSQLiteHelper helper = new CCWCCSQLiteHelper(mView.getContext());
-
-        char delimiter = '|';
-        String wholeText= textBirds.getText().toString();
-        int count=0;
-        for (int i = 0; i < wholeText.length(); i++) {
-            if (wholeText.charAt(i) == delimiter) {
-                count++;
-            }
-        }
-
-        int lastDelimiter=0;
-        for (int i = 0; i < count; i++) {
-            int nextDelimiter = wholeText.indexOf(delimiter, lastDelimiter);
-            String singleText = wholeText.substring(lastDelimiter, nextDelimiter);
-            lastDelimiter=nextDelimiter+1;
-            int indexOfComma = singleText.indexOf(",");
-            String name = singleText.substring(0, indexOfComma);
-            int quantity = Integer.parseInt(singleText.substring(indexOfComma + 1));
+    private JSONArray integrateRecord() {
+        JSONArray array = new JSONArray();
+        for (Object o : information) {
+            JSONObject t = ((JSONObject) o);
             JSONObject recordElement = new JSONObject();
-            String code = helper.getCodeByBirdName(name);
-            recordElement.put("code", code);
+            recordElement.put(RecordUtil.CODE_KEY, t.getString(RecordUtil.CODE_KEY));
 
-            recordElement.put("birdname", name);
-            recordElement.put("birdquantity", quantity);
+            recordElement.put(RecordUtil.BIRD_NAME_KEY, t.getString(RecordUtil.BIRD_NAME_KEY));
+            recordElement.put(RecordUtil.QUANTITY_KEY, t.getString(RecordUtil.QUANTITY_KEY));
 
-            String location= String.valueOf(editLocation.getText());
+            String location = String.valueOf(editLocation.getText());
             double lat = Double.valueOf(location.substring(0, location.indexOf(',')));
             double lon = Double.valueOf(location.substring(location.indexOf(',') + 1));
-            recordElement.put("lat", lat);
-            recordElement.put("lon", lon);
+            recordElement.put(RecordUtil.LAT_KEY, lat);
+            recordElement.put(RecordUtil.LON_KEY, lon);
 
-            recordElement.put("datetime", textDateTime.getText());
+            recordElement.put(RecordUtil.DATETIME_KEY, textDateTime.getText());
             String recordIndex = textDateTime.getText().toString().substring(0, 7);
-            recordElement.put("recordidx", recordIndex);
+            recordElement.put(RecordUtil.RECORD_INDEX_KEY, recordIndex);
 
-            recordElement.put("weather", editWeather.getText());
+            recordElement.put(RecordUtil.WEATHER_KEY, editWeather.getText());
             SharedPreferences sharedPreferences = mView.getContext().getSharedPreferences(LoginSP.PREFERENCES_NAME, Context.MODE_PRIVATE);
-            String city = sharedPreferences.getString("checkpoint", "");
-            recordElement.put("position", city);
+            String city = sharedPreferences.getString(LoginSP.CHECK_POINT_KEY, "");
+            recordElement.put(RecordUtil.POSITION_KEY, city);
 
-            recordElement.put("detail", editDeatail.getText());
-            record.add(recordElement);
+            recordElement.put(RecordUtil.DETAIL_KEY, editDetail.getText());
+            array.add(recordElement);
         }
-
-        helper.close();
+        return array;
     }
 
     private void setListenerSearchView() {
-        final CCWCCSQLiteHelper dbHelper = new CCWCCSQLiteHelper(mView.getContext());
-        Cursor birdAllNameCursor = dbHelper.getBirdAllNamesCursor(null);
-        SimpleCursorAdapter simpleCursorAdapter=new SimpleCursorAdapter(mView.getContext(),android.R.layout.simple_list_item_1, birdAllNameCursor
-                ,new String[]{"namezh"}, new int[]{android.R.id.text1});
-        mSearchView.setSuggestionsAdapter(simpleCursorAdapter);
-        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                onQueryTextChange(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                Cursor cursor = dbHelper.getBirdAllNamesCursor(newText);
-                SimpleCursorAdapter adapter = new SimpleCursorAdapter(mView.getContext(), android.R.layout.simple_list_item_1, cursor
-                        , new String[]{"namezh"}, new int[]{android.R.id.text1});
-                mSearchView.setSuggestionsAdapter(adapter);
-                return false;
-            }
-        });
-
-        mSearchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
-            @Override
-            public boolean onSuggestionSelect(int position) {
-                return false;
-            }
-
-            @Override
-            public boolean onSuggestionClick(int position) {
-
-                final InputMethodManager imm = (InputMethodManager) mView.getContext().getSystemService(mView.getContext().INPUT_METHOD_SERVICE);
-//                imm.toggleSoftInput(0,InputMethodManager.SHOW_FORCED);
-                Cursor cursor = mSearchView.getSuggestionsAdapter().getCursor();
-                cursor.moveToFirst();
-                int i = 0;
-                while (i < position) {
-                    cursor.moveToNext();
-                    i++;
-                }
-                String name = cursor.getString(1);
-                textBirds.setText(name);
-                final EditText editText = new EditText(mView.getContext());
-                editText.setHint(R.string.hint_add_quantity);
-                editText.setInputType(InputType.TYPE_CLASS_NUMBER);
-                editText.setFocusableInTouchMode(true);
-                editText.setFocusable(true);
-                new AlertDialog.Builder(mView.getContext())
-                        .setTitle(getResources().getString(R.string.dialog_title_information))
-                        .setIcon(android.R.drawable.ic_dialog_info)
-                        .setView(editText)
-                        .setPositiveButton(getResources().getString(R.string.dialog_positive_button_caption_confirm), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (!editText.getText().equals("")) {
-                                    textBirds.append(","+editText.getText()+'|');
-                                    buttonAddRecord.requestFocus();
-                                    imm.hideSoftInputFromWindow(mView.getWindowToken(),0);
-                                }
-                            }
-                        }).setNegativeButton(R.string.dialog_positive_button_caption_cancel, null)
-                        .setCancelable(false)
-                        .create().show();
-                mSearchView.setQuery("",false);
-                editDeatail.requestFocus();
-                return false;
-            }
-        });
+        SearchViewUtil searchViewUtil = new SearchViewUtil(mSearchView, recordAdapter);
+        searchViewUtil.setInputQuantityAdapter();
     }
 
     private void setListenerUpload() {
         buttonUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RecordUtil recordUtil = new RecordUtil(mView.getContext());
-                if (recordUtil.submitRecord(record)) {
-                    initialAllViews();
+                if (checkInformationIntegrity()) {
+                    RecordUtil recordUtil = new RecordUtil(mView.getContext());
+                    if (recordUtil.submitRecord(integrateRecord())) {
+                        initialAllViews();
+                    }
+                } else {
+                    Toast.makeText(getContext(), R.string.prompt_information_incomplete, Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private void setSearchAdd(){
+        buttonSearchAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSearchView.requestFocus();
+                InputMethodManager inputMethodManager = (InputMethodManager) mView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        });
+    }
+
+    private void setBatchAdd(){
+        buttonBatchAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent("BATCH_ADD_ACTIVITY"),0);
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data!=null) {
+            String s = data.getExtras().getString(BatchAddActivity.ARRAY_STRING_KEY);
+            JSONArray array = JSON.parseArray(s);
+            for (Object o : array) {
+                JSONObject t=(JSONObject) o;
+                information.add(t);
+            }
+            recordAdapter.notifyDataSetChanged();
+        }
     }
 
 }

@@ -17,7 +17,6 @@ import java.util.concurrent.ExecutionException;
 * 封装了通过HttpHelperAsyncTask得到天气数据并存入SharedPreference的操作
 * */
 public class WeatherSP {
-    private final String WEATHER_INTERFACE_LOCATION ="http://apis.baidu.com/heweather/weather/free?city=";
     public static final String PREFERENCES_NAME = "weather";
     private SharedPreferences sharedPreferences;
     private Context mContext;
@@ -37,7 +36,7 @@ public class WeatherSP {
             //转码成iso-8859-1，支持调用接口传入中文
             mCity=city;
             mCity=new String(mCity.getBytes("utf-8"),"iso-8859-1");
-            String strUrl = WEATHER_INTERFACE_LOCATION + mCity;
+            String strUrl = HttpHelperAsyncTask.WEATHER_INTERFACE_LOCATION + mCity;
             JSONObject jsonRequest = new JSONObject();
             jsonRequest.put("method", "GET");
             jsonRequest.put("location", strUrl);

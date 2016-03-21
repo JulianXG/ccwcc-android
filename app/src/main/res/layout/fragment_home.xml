@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        //顶部背景区域
-        <RelativeLayout
+    <!--顶部背景区域-->
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/home_bg_height"
             android:layout_gravity="fill"
@@ -19,65 +15,84 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
+                android:layout_gravity="left|bottom"
                 android:layout_margin="@dimen/small_padding_size"
                 android:id="@+id/text_home_weather_information" />
 
-        </RelativeLayout>
+    </LinearLayout>
 
+    <LinearLayout style="@style/home_container">
 
-        <LinearLayout style="@style/layout_home_function_container"
-            android:layout_marginTop="@dimen/small_padding_size">
+            <LinearLayout style="@style/home_element"
+                            android:id="@+id/layout_home_local">
 
+                <ImageView style="@style/img_home"
+                           android:src="@drawable/ic_home_local" />
+                <TextView style="@style/img_home_caption"
+                          android:text="@string/caption_local" />
 
-            <RelativeLayout style="@style/layout_home_function"
-                android:id="@+id/layout_home_local">
+            </LinearLayout>
 
-                <ImageView style="@style/img_home_function"
-                    android:src="@drawable/bg_home_local" />
+            <include layout="@layout/divider_vertical"/>
 
-                <TextView style="@style/img_home_function_caption"
-                    android:text="@string/text_home_local_caption" />
-            </RelativeLayout>
+            <LinearLayout style="@style/home_element"
+                            android:id="@+id/layout_home_date">
 
-            <RelativeLayout style="@style/layout_home_function"
-                android:id="@+id/layout_home_date">
+                <ImageView style="@style/img_home"
+                           android:src="@drawable/ic_home_date"/>
 
-                <ImageView style="@style/img_home_function"
-                    android:src="@drawable/bg_home_date"/>
+                <TextView style="@style/img_home_caption"
+                          android:text="@string/caption_date_statistics" />
+            </LinearLayout>
 
-                <TextView style="@style/img_home_function_caption"
-                    android:text="@string/text_home_date_statistics_caption" />
-            </RelativeLayout>
-        </LinearLayout>
-
-
-        <LinearLayout style="@style/layout_home_function_container">
-
-            <RelativeLayout style="@style/layout_home_function"
-                android:id="@+id/layout_home_quantity">
-
-                <ImageView style="@style/img_home_function"
-                    android:src="@drawable/bg_home_quantity" />
-
-                <TextView style="@style/img_home_function_caption"
-                    android:text="@string/text_home_quantity_caption" />
-            </RelativeLayout>
-
-            <RelativeLayout style="@style/layout_home_function"
-                android:id="@+id/layout_home_flag">
-
-                <ImageView style="@style/img_home_function"
-                    android:src="@drawable/bg_home_flag"/>
-
-                <TextView style="@style/img_home_function_caption"
-                    android:text="@string/text_home_flag_caption" />
-            </RelativeLayout>
-
-
-        </LinearLayout>
+            <include layout="@layout/divider_vertical"/>
 
 
     </LinearLayout>
-</ScrollView>
+
+    <include layout="@layout/divider"/>
+
+
+    <!-- 留下以后扩展位置-->
+    <LinearLayout style="@style/home_container">
+
+        <LinearLayout style="@style/home_element" android:id="@+id/layout_home_quantity">
+
+            <ImageView style="@style/img_home" android:src="@drawable/ic_home_quantity" />
+
+            <TextView style="@style/img_home_caption" android:text="@string/caption_quantity" />
+
+        </LinearLayout>
+
+        <include layout="@layout/divider_vertical"/>
+
+        <LinearLayout style="@style/home_element" android:id="@+id/layout_home_flag">
+
+            <ImageView style="@style/img_home" android:src="@drawable/ic_home_flag"/>
+
+            <TextView style="@style/img_home_caption" android:text="@string/caption_flag" />
+
+        </LinearLayout>
+
+        <!--<LinearLayout style="@style/layout_home_function" android:id="@+id/layout_home_more">-->
+
+            <!--<ImageView style="@style/img_home_function" android:src="@drawable/ic_more"-->
+                <!--android:layout_marginTop="@dimen/common_padding_size"/>-->
+
+            <!--<TextView style="@style/img_home_function_caption"-->
+                <!--android:text="更多功能"/>-->
+
+        <!--</LinearLayout>-->
+
+
+
+    </LinearLayout>
+
+    <include layout="@layout/divider"/>
+
+    <LinearLayout style="@style/home_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</LinearLayout>

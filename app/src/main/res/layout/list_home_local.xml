@@ -5,16 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     
-    <CheckBox style="@style/center_left_style"
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:id="@+id/checkbox_local" />
 
-    <TextView style="@style/center_left_style"
+    <TextView style="@style/simple_text_left_padding"
         android:id="@+id/text_home_local_bird_name"/>
 
-    <TextView style="@style/center_left_style"
+    <TextView style="@style/simple_text_left_padding"
         android:id="@+id/text_home_local_date"/>
 
-    <TextView style="@style/center_left_style"
-        android:layout_marginLeft="@dimen/common_padding_size"
+    <TextView style="@style/simple_text_left_padding"
         android:id="@+id/text_home_local_quantity"/>
+
 </LinearLayout>
