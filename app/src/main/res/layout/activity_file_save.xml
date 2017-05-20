@@ -58,7 +58,7 @@
 
         <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:id="@+id/button_file_chooser_save_confirm"
-                android:text="@string/caption_confirm"/>
+                android:text="@string/confirm"/>
 
     </LinearLayout>
 

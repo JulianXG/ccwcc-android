@@ -1,22 +1,24 @@
 <resources>
     <string name="app_name">中国沿海水鸟调查</string>
+    <string name="hint_input_username">请填写用户名</string>
+    <string name="hint_input_password">请输入密码</string>
 
     <string name="default_city_name">香港</string>
     <string name="text_current_city_caption">当前城市</string>
-    <string name="app_version">版本号1.1</string>
+    <string name="app_version">v1.1</string>
     <string name="text_add_expand_caption">名称数量</string>
     <string name="text_add_birds_count_caption">观察数量</string>
 
-    <string name="hint_add_search">请输入关键字进行搜索鸟名称</string>
+    <string name="hint_add_search">请输入关键字进行搜索</string>
     <string name="hint_add_locate">请输入经纬度信息</string>
     <string name="text_add_locate_caption">观察地点</string>
 
-    <string name="button_add_locate">定位</string>
+    <string name="locate">定位</string>
 
     <string name="text_add_date_caption">观察日期</string>
     <string name="text_add_weather_caption">观察天气</string>
-    <string name="button_add_local">保存</string>
-    <string name="button_add_upload">上传</string>
+    <string name="button_add_local">保存到草稿箱</string>
+    <string name="button_add_upload">上传至服务器</string>
     <string name="button_add_today_caption">今天</string>
     <string name="button_add_today_weather_caption">今日天气</string>
 
@@ -26,11 +28,11 @@
 
     <string name="button_add_user_caption">未登录</string>
     <string name="text_left_drawer_default_city_caption">当前选择城市信息</string>
-    <string name="button_login_login_caption">登录</string>
+    <string name="login">登录</string>
     <string name="hint_login_password">密码</string>
     <string name="hint_login_username">用户名</string>
     <string name="text_user_user_caption">我的资料</string>
-    <string name="text_user_about">关于我们</string>
+    <string name="about">关于</string>
 
 
     <string name="button_add_addrecord_caption">添加记录</string>
@@ -48,8 +50,7 @@
     <string name="text_profile_city_caption">城市</string>
     <string name="text_about_version">版本号\t1.0</string>
     <string name="caption_local">本地记录</string>
-    <string name="caption_date_statistics">日期统计</string>
-    <string name="caption_quantity">鸟种统计</string>
+    <string name="caption_statistics">统计</string>
     <string name="caption_flag">旗标</string>
     <string name="hint_add_locating">正在定位中...</string>
     <string name="hint_add_quantity">观察数量</string>
@@ -66,7 +67,7 @@
     <string name="prompt_exit_confirm">再按一次退出程序</string>
     <string name="prompt_confirm_list_delete_success">删除记录成功</string>
     <string name="text_add_detail_caption">观察备注</string>
-    <string name="hint_add_detail">可以填写详细描述</string>
+    <string name="hint_add_detail">请填写详细描述</string>
     <string name="prompt_add_save_local_success">记录已经成功保存到本地</string>
     <string name="caption_loading">正在连接到网络...</string>
     <string name="caption_home_local_select_all">全选</string>
@@ -81,7 +82,7 @@
     <string name="caption_popup_chooser_and_save_directory">目录</string>
     <string name="caption_file_chooser_save_filename">文件名:</string>
     <string name="caption_cancel">取消</string>
-    <string name="caption_confirm">确认</string>
+    <string name="confirm">确认</string>
     <string name="title_toolbar_file_save">另存为Excel文件</string>
     <string name="prompt_file_save_success">文件保存成功！</string>
     <string name="prompt_file_save_failed">文件保存失败，请重试！</string>
@@ -102,7 +103,35 @@
     <string name="caption_flag_remarks">旗标备注</string>
     <string name="hint_flag_flag_code">请填写旗标编号</string>
     <string name="prompt_information_incomplete">信息输入不完整，请重新填写，并重试</string>
-    <string name="caption_search_add">搜索添加</string>
+    <string name="caption_search_add">搜索</string>
     <string name="caption_batch_add">批量添加</string>
     <string name="hint_prompt_weather">请输入天气及温度</string>
+    <string name="prompt_delete_confirm">确认删除？</string>
+    <string name="home">首页</string>
+    <string name="add_record">添加记录</string>
+    <string name="me">我</string>
+    <string name="hint_select_checkpoint">请选择检查地地址</string>
+    <string name="requesting">正在请求中……</string>
+    <string name="switch_checkpoint">切换</string>
+    <string name="profile">个人资料</string>
+    <string name="logout">退出登录</string>
+    <string name="locate_info">定位信息</string>
+    <string name="locating">正在定位中……</string>
+    <string name="loading">正在加载中</string>
+    <string name="settings">设置</string>
+    <string name="confirm_logout">确认退出登录？</string>
+    <string name="checkpoint">检查地</string>
+    <string name="gender">性别</string>
+    <string name="email">电子邮箱</string>
+    <string name="role">用户角色</string>
+    <string name="tel">手机号码</string>
+    <string name="birthday">生日日期</string>
+    <string name="submit">发送</string>
+    <string name="please_input">请输入</string>
+    <string name="draft_box">草稿箱</string>
+    <string name="action_success">操作成功！</string>
+    <string name="action_fail">操作失败</string>
+    <string name="ru_loop">右胫彩环</string>
+    <string name="ld_loop">左跗彩环</string>
+    <string name="rd_loop">右跗彩环</string>
 </resources>

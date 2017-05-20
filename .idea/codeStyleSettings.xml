@@ -3,6 +3,8 @@
   <component name="ProjectCodeStyleSettingsManager">
     <option name="PER_PROJECT_SETTINGS">
       <value>
+        <option name="FIELD_NAME_PREFIX" value="m" />
+        <option name="STATIC_FIELD_NAME_PREFIX" value="m" />
         <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="99" />
         <option name="NAMES_COUNT_TO_USE_IMPORT_ON_DEMAND" value="99" />
         <option name="PACKAGES_TO_USE_IMPORT_ON_DEMAND">
@@ -35,9 +37,6 @@
           <option name="USE_CUSTOM_SETTINGS" value="true" />
         </AndroidXmlCodeStyleSettings>
         <Objective-C-extensions>
-          <option name="GENERATE_INSTANCE_VARIABLES_FOR_PROPERTIES" value="ASK" />
-          <option name="RELEASE_STYLE" value="IVAR" />
-          <option name="TYPE_QUALIFIERS_PLACEMENT" value="BEFORE" />
           <file>
             <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Import" />
             <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Macro" />
@@ -62,8 +61,34 @@
             <pair source="c" header="h" />
           </extensions>
         </Objective-C-extensions>
+        <DBN-PSQL>
+          <case-options enabled="false">
+            <option name="KEYWORD_CASE" value="lower" />
+            <option name="FUNCTION_CASE" value="lower" />
+            <option name="PARAMETER_CASE" value="lower" />
+            <option name="DATATYPE_CASE" value="lower" />
+            <option name="OBJECT_CASE" value="preserve" />
+          </case-options>
+          <formatting-settings enabled="false" />
+        </DBN-PSQL>
+        <DBN-SQL>
+          <case-options enabled="false">
+            <option name="KEYWORD_CASE" value="lower" />
+            <option name="FUNCTION_CASE" value="lower" />
+            <option name="PARAMETER_CASE" value="lower" />
+            <option name="DATATYPE_CASE" value="lower" />
+            <option name="OBJECT_CASE" value="preserve" />
+          </case-options>
+          <formatting-settings enabled="false">
+            <option name="STATEMENT_SPACING" value="one_line" />
+            <option name="CLAUSE_CHOP_DOWN" value="chop_down_if_statement_long" />
+            <option name="ITERATION_ELEMENTS_WRAPPING" value="chop_down_if_not_single" />
+          </formatting-settings>
+        </DBN-SQL>
         <XML>
-          <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
+          <option name="XML_KEEP_LINE_BREAKS" value="false" />
+          <option name="XML_ALIGN_ATTRIBUTES" value="false" />
+          <option name="XML_SPACE_INSIDE_EMPTY_TAG" value="true" />
         </XML>
         <codeStyleSettings language="XML">
           <option name="FORCE_REARRANGE_MODE" value="1" />
@@ -77,7 +102,7 @@
                   <match>
                     <AND>
                       <NAME>xmlns:android</NAME>
-                      <XML_NAMESPACE>Namespace:</XML_NAMESPACE>
+                      <XML_NAMESPACE>^$</XML_NAMESPACE>
                     </AND>
                   </match>
                 </rule>
@@ -87,7 +112,7 @@
                   <match>
                     <AND>
                       <NAME>xmlns:.*</NAME>
-                      <XML_NAMESPACE>Namespace:</XML_NAMESPACE>
+                      <XML_NAMESPACE>^$</XML_NAMESPACE>
                     </AND>
                   </match>
                   <order>BY_NAME</order>
@@ -224,6 +249,6 @@
         </codeStyleSettings>
       </value>
     </option>
-    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default (1)" />
+    <option name="USE_PER_PROJECT_SETTINGS" value="true" />
   </component>
 </project>

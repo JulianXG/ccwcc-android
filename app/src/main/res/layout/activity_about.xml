@@ -6,13 +6,13 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <include layout="@layout/toolbar" />
 
         <!-- 中心处为logo-->
         <ImageView
-            android:layout_margin="@dimen/large_padding_size"
+            android:layout_marginTop="@dimen/large_padding_size"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,8 +21,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_padding_size"
             android:gravity="center_horizontal"
-            android:text="@string/text_about_version" />
+            android:text="@string/app_name" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_padding_size"
+            android:gravity="center"
+            android:text="@string/app_version"/>
 
         <include layout="@layout/divider" />
 

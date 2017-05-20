@@ -1,59 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/app_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 顶部工具栏-->
-    <include layout="@layout/toolbar" />
-
-    <android.support.v4.widget.DrawerLayout
-        android:id="@+id/layout_main_left_drawer"
+    <FrameLayout
+        android:id="@+id/frame_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"/>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <!-- 下面为主页面内容-->
-            <FrameLayout
-                android:id="@+id/layout_main_relate_tab_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <!--此为底部工具栏分界线分界线-->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/divider_color" />
-
-            <android.support.v4.app.FragmentTabHost
-                android:id="@android:id/tabhost"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/bottom_tab_height">
-
-                <FrameLayout
-                    android:id="@android:id/tabcontent"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="0" />
-            </android.support.v4.app.FragmentTabHost>
-
-
-        </LinearLayout>
-
-        <!-- 左侧侧滑菜单-->
-        <fragment
-            android:id="@+id/fragment_main_left_drawer"
-            android:name="com.kalyter.ccwcc.ui.main.drawer.LeftDrawerFragment"
-            android:layout_width="@dimen/left_drawer_width"
-            android:layout_height="match_parent"
-            android:layout_gravity="start" />
-
-    </android.support.v4.widget.DrawerLayout>
-</LinearLayout>
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_gravity="bottom"
+        app:elevation="3dp"
+        android:background="@android:color/white"
+        app:menu="@menu/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</android.support.design.widget.CoordinatorLayout>

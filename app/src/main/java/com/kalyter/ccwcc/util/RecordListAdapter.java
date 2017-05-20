@@ -5,27 +5,44 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONArray;
 import com.kalyter.ccwcc.R;
+import com.kalyter.ccwcc.model.Bird;
 
-public class RecordListAdapter extends BaseAdapter{
+import java.util.ArrayList;
+import java.util.List;
 
-    private static JSONArray data;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class RecordListAdapter extends BaseAdapter {
+    private List<Bird> mData;
     private Context mContext;
-    private TextView textName,textQuantity,textIndex;
-    private Button buttonDelete;
 
-    public RecordListAdapter(Context mContext, JSONArray data) {
+    public RecordListAdapter(Context mContext) {
         this.mContext = mContext;
-        this.data = data;
+        this.mData = new ArrayList<>();
+    }
+
+    public void addData(Bird bird) {
+        mData.add(bird);
+        notifyDataSetChanged();
+    }
+
+    public void addData(List<Bird> birds) {
+        mData.addAll(birds);
+        notifyDataSetChanged();
+    }
+
+    public void clearAllData() {
+        mData.clear();
+        notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return data.size();
+        return mData.size();
     }
 
     @Override
@@ -40,32 +57,47 @@ public class RecordListAdapter extends BaseAdapter{
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.list_add_confirm, null);
+            convertView = LayoutInflater.from(mContext)
+                    .inflate(R.layout.list_add_confirm, parent, false);
+            viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
-        if (!data.getJSONObject(position).isEmpty()) {
-            buttonDelete=(Button) convertView.findViewById(R.id.button_add_confirm_list_delete);
-            textName = (TextView) convertView.findViewById(R.id.text_add_confirm_list_name);
-            textQuantity = (TextView) convertView.findViewById(R.id.text_add_confirm_list_quantity);
-            textIndex = (TextView) convertView.findViewById(R.id.text_add_confirm_list_index);
-
-            textName.setText(data.getJSONObject(position).getString(RecordUtil.BIRD_NAME_KEY));
-            textQuantity.setText(data.getJSONObject(position).getString(RecordUtil.QUANTITY_KEY));
-            textIndex.setText(String.valueOf(position + 1));
-
-            buttonDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    data.remove(position);
-                    notifyDataSetChanged();
-                }
-            });
-        }
-
+        Bird bird = mData.get(position);
+        viewHolder.mBirdName.setText(bird.getNameZh());
+        viewHolder.mQuantity.setText(bird.getBirdCount().toString());
+        viewHolder.mIndex.setText(String.format("%d", position + 1 ));
         return convertView;
     }
 
-    public JSONArray getData() {
-        return data;
+    public void deleteData(int position) {
+        mData.remove(position);
+        notifyDataSetChanged();
+    }
+
+    public void changeCount(int position, int count) {
+        Bird bird = mData.get(position);
+        bird.setBirdCount(count);
+        notifyDataSetChanged();
+    }
+
+    public List<Bird> getData() {
+        return mData;
+    }
+
+    class ViewHolder {
+        @BindView(R.id.index)
+        TextView mIndex;
+        @BindView(R.id.bird_name)
+        TextView mBirdName;
+        @BindView(R.id.quantity)
+        TextView mQuantity;
+
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 }

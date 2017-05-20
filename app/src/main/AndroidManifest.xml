@@ -1,143 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kalyter.ccwcc" >
-    //百度地图所需的权限
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+          package="com.kalyter.ccwcc" >
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <!-- 这个权限用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- 这个权限用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- 用于读取手机当前的状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
+        android:name=".common.App"
         android:allowBackup="true"
         android:icon="@drawable/ic_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        //百度地图的信息
-        <service
-            android:name="com.baidu.location.f"
-            android:enabled="true"
-            android:process=":remote" />
+        android:theme="@style/AppTheme">
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="LzYwZikFjOQm1BXABO2aqFeg" />
-        //启动界面
-        <activity
-            android:name=".ui.launch.LaunchActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote"/>
+
+        <!--启动界面-->
+        <activity android:name=".splash.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        //主界面
+        <!--主界面-->
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".main.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.main.MainActivity" />
-
-            <intent-filter>
-                <action android:name="MAIN_ACTIVITY" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+                android:value=".main.MainActivity" />
         </activity>
 
         <!-- 登录界面 -->
-        <activity
-            android:name=".ui.launch.LoginActivity"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="LOGIN_ACTIVITY" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.main.tab.user.AboutActivity"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="ABOUT_ACTIVITY" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".login.LoginActivity"/>
+        <activity android:name=".user.AboutActivity"/>
 
         <!-- 我的资料界面 -->
-        <activity
-            android:name=".ui.main.tab.user.ProfileActivity"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="PROFILE_ACTIVITY" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".profile.ProfileActivity"/>
 
         <!-- 本地记录界面 -->
-        <activity android:name=".ui.main.tab.home.LocalRecordActivity" >
-            <intent-filter>
-                <action android:name="LOCAL_RECORD_ACTIVITY" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <!-- 数量统计界面-->
-        <activity android:name=".ui.main.tab.home.QuantityActivity">
-            <intent-filter>
-                <action android:name="QUANTITY_ACTIVITY" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <!--另存为Excel文件-->
-        <activity android:name=".util.SaveFileUtilActivity">
-            <intent-filter>
-                <action android:name="SAVE_FILE_UTIL_ACTIVITY"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
-
-        <!-- 日期界面统计-->
-        <activity android:name=".ui.main.tab.home.DateStatisticsActivity">
-            <intent-filter>
-                <action android:name="DATE_STATISTICS_ACTIVITY" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".draft.DraftActivity"/>
 
         <!-- 旗标界面-->
-        <activity android:name=".ui.main.tab.home.FlagActivity">
-
-            <intent-filter>
-                <action android:name="FLAG_ACTIVITY"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
+        <activity android:name=".flag.FlagActivity"/>
 
         <!-- 批量添加-->
-        <activity android:name=".ui.main.tab.add.BatchAddActivity">
-            <intent-filter>
-                <action android:name="BATCH_ADD_ACTIVITY"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
+        <activity android:name=".add.BatchAddActivity"/>
+
+        <!-- 搜索添加-->
+        <activity android:name=".search.SearchActivity"/>
     </application>
 
 </manifest>

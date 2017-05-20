@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/partial_toolbar_with_back"/>
 
     <ExpandableListView
                         android:id="@+id/expand_batch_add"
@@ -12,17 +12,4 @@
                         android:layout_height="0dp"
                         android:background="@color/content_color"
                         android:layout_weight="1"/>
-
-
-    <include layout="@layout/divider"/>
-    <LinearLayout style="@style/list_container">
-        <Button
-                android:id="@+id/button_expand_add"
-                android:text="@string/caption_expand_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
-
-    </LinearLayout>
-
 </LinearLayout>

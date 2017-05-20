@@ -16,16 +16,15 @@
         <item>香港</item>
     </string-array>
 
-    <string-array name="city_name_display_arrays">
+    <string-array name="checkpoints">
         <item>辽宁丹东鸭绿江口</item>
         <item>辽宁盘锦双台子河口</item>
         <item>天津</item>
-        <item>沧州</item>
+        <item>河北沧州</item>
         <item>山东黄河三角洲</item>
         <item>连云港</item>
         <item>江苏如东</item>
-        <item>上海南汇东滩湿地</item>
-        <item>福建闽江河口湿地</item>
+        <item>上海南汇东滩</item>
         <item>福建泉州湾</item>
         <item>广东海丰鸟类自然保护区</item>
         <item>深圳</item>
@@ -37,7 +36,5 @@
         <item>添加</item>
         <item>我</item>
     </string-array>
-
-
 
 </resources>

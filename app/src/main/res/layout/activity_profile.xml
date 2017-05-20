@@ -1,48 +1,298 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+              android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/toolbar" />
+    <include layout="@layout/partial_toolbar_with_back" />
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <LinearLayout style="@style/list_container">
-            <!-- 用户名-->
-            <LinearLayout style="@style/list_element">
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-                <TextView style="@style/caption"
+            <LinearLayout
+                android:id="@+id/username_container"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_height">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
                     android:text="@string/text_profile_username_caption"/>
 
-                <TextView style="@style/content_only"
-                          android:id="@+id/text_profile_user_name"/>
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_marginRight="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
 
-            <!-- 昵称-->
-            <include layout="@layout/divider_horizon_padding"/>
-            <LinearLayout style="@style/list_element">
+            <include layout="@layout/divider"/>
+        </LinearLayout>
 
-                <TextView style="@style/caption"
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/nickname_container"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_height">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
                     android:text="@string/text_profile_nickname_caption"/>
 
-                <TextView style="@style/content_only"
-                    android:id="@+id/text_profile_nickname"/>
+                <TextView
+                    android:id="@+id/nickname"
+                    android:layout_marginRight="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
             </LinearLayout>
 
-            <!-- 城市-->
-            <include layout="@layout/divider_horizon_padding"/>
-            <LinearLayout style="@style/list_element">
+            <include layout="@layout/divider"/>
+        </LinearLayout>
 
-                <TextView style="@style/caption"
-                    android:text="@string/text_profile_city_caption"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-                <TextView style="@style/content_only"
-                    android:id="@+id/text_profile_city"/>
+            <LinearLayout
+                android:id="@+id/gender_container"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_height">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:text="@string/gender"/>
+
+                <TextView
+                    android:id="@+id/gender"
+                    android:layout_marginRight="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
             </LinearLayout>
+
+            <include layout="@layout/divider"/>
+        </LinearLayout>
+
+        <!--<LinearLayout-->
+            <!--android:orientation="vertical"-->
+            <!--android:paddingLeft="16dp"-->
+            <!--android:background="?android:selectableItemBackground"-->
+            <!--android:clickable="true"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/checkpoint_container"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/toolbar_height">-->
+                <!--<TextView-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:textColor="@android:color/black"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:text="@string/checkpoint"/>-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/checkpoint"-->
+                    <!--android:layout_marginRight="8dp"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"/>-->
+
+            <!--</LinearLayout>-->
+
+            <!--<include layout="@layout/divider"/>-->
+        <!--</LinearLayout>-->
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/email_container"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_height">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:text="@string/email"/>
+
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_marginRight="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <include layout="@layout/divider"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/role_container"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_height">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:text="@string/role"/>
+
+                <TextView
+                    android:id="@+id/role"
+                    android:layout_marginRight="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <include layout="@layout/divider"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/birthday_container"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_height">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:text="@string/birthday"/>
+
+                <TextView
+                    android:id="@+id/birthday"
+                    android:layout_marginRight="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <include layout="@layout/divider"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/tel_container"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_height">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:text="@string/tel"/>
+
+                <TextView
+                    android:id="@+id/tel"
+                    android:layout_marginRight="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <include layout="@layout/divider"/>
+        </LinearLayout>
 
     </LinearLayout>
-    <include layout="@layout/divider"/>
-
-
 </LinearLayout>

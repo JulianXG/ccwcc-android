@@ -1,174 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:scrollbars="none"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <include layout="@layout/toolbar"/>
 
-        <!-- 搜索框-->
-        <SearchView
-            android:id="@+id/search_view_add"
-            android:background="@color/app_background"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/list_item_height"
-            android:iconifiedByDefault="false"
-            android:imeOptions="actionSearch"
-            android:queryHint="@string/hint_add_search"
-            android:inputType="text"/>
+    <include layout="@layout/divider"
+             android:layout_width="match_parent"
+             android:layout_height="1px"
+             android:layout_marginTop="@dimen/common_padding_size"/>
+    <LinearLayout style="@style/list_container">
 
-        <LinearLayout style="@style/list_container">
+        <LinearLayout style="@style/list_element">
 
-            <LinearLayout style="@style/list_element">
+            <TextView
+                style="@style/caption"
+                android:id="@+id/text_add_locate_caption"
+                android:text="@string/text_add_locate_caption"/>
 
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/switch_checkpoint"
+                android:layout_marginLeft="24px"
+                android:layout_gravity="center_vertical"
+                android:spinnerMode="dialog"
+                android:entries="@array/checkpoints"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
 
-                <TextView
-                    style="@style/caption"
-                    android:id="@+id/text_add_locate_caption"
-                    android:text="@string/text_add_locate_caption"/>
+        <!-- 定位区域-->
+        <include layout="@layout/divider_horizon_padding"/>
+        <LinearLayout style="@style/list_function_element"
+                      android:id="@+id/locate_container">
 
-                <EditText
-                    style="@style/list_edit"
-                    android:id="@+id/edit_add_locate"
-                    android:hint="@string/hint_add_locate"/>
+            <TextView style="@style/caption"
+                      android:text="@string/locate_info"/>
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button_add_locate"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/button_add_locate"/>
+            <TextView style="@style/content"
+                      android:layout_marginRight="8dp"
+                      android:id="@+id/locate_result"/>
 
-            </LinearLayout>
+            <ImageView
+                android:id="@+id/locate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_location_on_black_24dp"/>
 
+        </LinearLayout>
+        <!-- 日期区域-->
+        <include layout="@layout/divider_horizon_padding"/>
+        <LinearLayout style="@style/list_function_element"
+                      android:id="@+id/layout_add_date">
 
-            <!-- 日期区域-->
-            <include layout="@layout/divider_horizon_padding"/>
-            <LinearLayout style="@style/list_function_element"
-                          android:id="@+id/layout_add_date">
+            <TextView style="@style/caption"
+                      android:text="@string/text_add_date_caption"/>
 
-                <TextView style="@style/caption"
-                          android:text="@string/text_add_date_caption"/>
+            <TextView style="@style/content"
+                      android:layout_marginRight="8dp"
+                      android:id="@+id/text_add_date"/>
 
-                <TextView style="@style/content"
-                          android:id="@+id/text_add_date"/>
-
-                <!-- 右箭头-->
-                <include layout="@layout/right_arrow"/>
-
-            </LinearLayout>
-
-
-            <!-- 天气区域-->
-            <include layout="@layout/divider_horizon_padding"/>
-            <LinearLayout style="@style/list_element">
-
-                <TextView
-                    style="@style/caption"
-                    android:id="@+id/text_add_weather_caption"
-                    android:text="@string/text_add_weather_caption"/>
-
-                <EditText
-                    style="@style/list_edit"
-                    android:id="@+id/edit_add_weather"
-                    android:hint="@string/hint_prompt_weather"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/button_add_today_weather"
-                    android:text="@string/button_add_today_weather_caption"/>
-
-            </LinearLayout>
-
-
-            <!--&lt;!&ndash;鸟物种名称TextView&ndash;&gt;-->
-            <!--<include layout="@layout/divider_horizon_padding"/>-->
-            <!--<LinearLayout style="@style/list_function_element"-->
-            <!--android:id="@+id/layout_add_birds">-->
-
-            <!--<TextView android:id="@+id/text_add_birds_caption"-->
-            <!--style="@style/caption"-->
-            <!--android:text="@string/text_add_expand_caption"/>-->
-
-            <!--<TextView style="@style/content"-->
-            <!--android:layout_marginLeft="@dimen/small_padding_size"-->
-            <!--android:layout_toRightOf="@id/text_add_birds_caption"-->
-            <!--android:id="@+id/text_add_birds"/>-->
-
-            <!--&lt;!&ndash; 右箭头&ndash;&gt;-->
-            <!--<include layout="@layout/right_arrow"/>-->
-
-            <!--</LinearLayout>-->
-
-
-            <!-- 备注区域-->
-            <include layout="@layout/divider_horizon_padding"/>
-            <LinearLayout style="@style/list_element">
-
-                <TextView style="@style/caption"
-                          android:id="@+id/text_add_detail_caption"
-                          android:text="@string/text_add_detail_caption"/>
-
-                <EditText style="@style/list_edit"
-                          android:id="@+id/edit_add_detail"
-                          android:hint="@string/hint_add_detail"/>
-
-            </LinearLayout>
+            <!-- 右箭头-->
+            <include layout="@layout/right_arrow"/>
 
         </LinearLayout>
 
-        <!-- 批量添加和搜索添加-->
-        <include layout="@layout/divider"/>
-        <LinearLayout style="@style/list_container"
-                      android:orientation="horizontal">
-            <Button
-                android:id="@+id/button_add_search_add"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/caption_search_add"/>
+        <!-- 天气区域-->
+        <include layout="@layout/divider_horizon_padding"/>
+        <LinearLayout style="@style/list_element">
 
-            <Button
-                android:id="@+id/button_add_batch_add"
+            <TextView
+                style="@style/caption"
+                android:id="@+id/text_add_weather_caption"
+                android:text="@string/text_add_weather_caption"/>
+
+            <EditText
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/caption_batch_add"/>
+                android:background="@null"
+                android:inputType="text"
+                android:layout_marginLeft="16dp"
+                android:gravity="center_vertical"
+                android:id="@+id/weather"
+                android:hint="@string/hint_prompt_weather"/>
         </LinearLayout>
 
-        <!--添加记录列表-->
-        <include layout="@layout/divider"/>
-        <ListView android:id="@+id/list_add_confirm"
-                  android:background="@color/content_color"
-                  android:layout_width="match_parent"
-                  android:layout_height="@dimen/add_list_confirm_height"/>
+        <!-- 备注区域-->
+        <include layout="@layout/divider_horizon_padding"/>
+        <LinearLayout style="@style/list_element">
 
+            <TextView style="@style/caption"
+                      android:id="@+id/text_add_detail_caption"
+                      android:text="@string/text_add_detail_caption"/>
 
-        <!--保存按钮-->
-        <include layout="@layout/divider"/>
-        <LinearLayout style="@style/list_container" android:orientation="horizontal">
-            <Button
-                android:id="@+id/button_add_local"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/button_add_local"/>
-
-            <Button
-                android:id="@+id/button_add_upload"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/button_add_upload"/>
+            <EditText android:layout_width="0dp"
+                      android:layout_height="match_parent"
+                      android:layout_weight="1"
+                      android:background="@null"
+                      android:layout_marginLeft="16dp"
+                      android:gravity="center_vertical"
+                      android:id="@+id/edit_add_detail"
+                      android:hint="@string/hint_add_detail"/>
 
         </LinearLayout>
-        <include layout="@layout/divider" />
-
 
     </LinearLayout>
-</ScrollView>
+
+    <!-- 批量添加和搜索添加-->
+    <include layout="@layout/divider"/>
+    <LinearLayout style="@style/list_container"
+                  android:orientation="horizontal">
+        <Button
+            android:id="@+id/button_add_search_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/caption_search_add"/>
+
+        <Button
+            android:id="@+id/button_add_batch_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/caption_batch_add"/>
+    </LinearLayout>
+
+    <!--添加记录列表-->
+    <include layout="@layout/divider"/>
+
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+        android:id="@+id/add_birds"
+        android:divider="@color/divider"
+        android:dividerHeight="1px"
+        android:layout_marginBottom="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

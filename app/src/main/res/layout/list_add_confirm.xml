@@ -1,35 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="horizontal"
-              android:clickable="true"
-              android:focusable="true"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="56dp"
+              android:minHeight="56dp">
 
-    <LinearLayout style="@style/list_container"
-                  android:orientation="horizontal"
-                  android:layout_height="match_parent"
-                  android:layout_width="0dp"
-                  android:layout_weight="1">
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:gravity="center_vertical"
+              android:layout_marginLeft="8dp"
+              android:textSize="16sp"
+              android:id="@+id/index"/>
 
-        <TextView style="@style/simple_text_left_padding"
-                  android:id="@+id/text_add_confirm_list_index"/>
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:gravity="center_vertical"
+              android:layout_marginLeft="32dp"
+              android:textSize="16sp"
+              android:id="@+id/bird_name"/>
 
-        <TextView style="@style/simple_text_left_padding"
-                  android:id="@+id/text_add_confirm_list_name"/>
-
-
-        <TextView style="@style/simple_text_left_padding"
-                  android:id="@+id/text_add_confirm_list_quantity"/>
-    </LinearLayout>
-
-
-    <Button
-            android:id="@+id/button_add_confirm_list_delete"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:background="@android:color/holo_red_light"
-            android:text="@string/caption_delete"/>
-
+    <TextView android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_vertical|end"
+              android:layout_marginRight="56dp"
+              android:textSize="16sp"
+              android:id="@+id/quantity"/>
 </LinearLayout>

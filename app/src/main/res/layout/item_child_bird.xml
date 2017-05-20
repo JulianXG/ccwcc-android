@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/item_child_container"
+              android:orientation="horizontal"
+              android:background="@drawable/selector_bg_list_functional"
+              android:clickable="true"
+              android:focusable="true"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/list_item_height">
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:gravity="center_vertical"
+              android:paddingLeft="16dp"
+              android:id="@+id/bird_name"/>
+
+    <TextView android:id="@+id/quantity"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingRight="@dimen/common_padding_size"
+              android:gravity="end|center_vertical"/>
+</LinearLayout>
+
